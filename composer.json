@@ -1,0 +1,17 @@
+{
+    "name": "shizee/blog-mvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "davidg34",
+            "email": "ytnum01@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.0"
+    }
+}

@@ -1,0 +1,24 @@
+{# Appel du layout de la page #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Titre BLOG{% endblock %}
+
+{# Code html #}
+{% block body %}
+    <h1>PAGE ACCUEIL</h1>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum rem optio eum qui possimus.
+</p>
+
+{# {% for article in articles %}
+    {% article.users %}
+    {% articles.posts %}
+{% endblock %} #}
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        alert("Bienvenue");
+    </script>
+{% endblock %}
