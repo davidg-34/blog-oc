@@ -5,20 +5,22 @@
 {% block title %}Titre BLOG{% endblock %}
 
 {# Code html #}
-{% block body %}
+{% block content %}
     <h1>PAGE ACCUEIL</h1>
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum rem optio eum qui possimus.
 </p>
 
-{# {% for article in articles %}
-    {% article.users %}
-    {% articles.posts %}
-{% endblock %} #}
+{% for article in articles %}    
+    <div class="article">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+    </div>
+{% endfor %}
 
 {% endblock %}
 
 {% block javascript %}
     <script>
-        alert("Bienvenue");
+        // alert("Bienvenue");
     </script>
 {% endblock %}
