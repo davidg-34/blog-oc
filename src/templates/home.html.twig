@@ -1,26 +1,37 @@
 {# Appel du layout de la page #}
 {% extends 'base.html.twig' %}
 
-{# Titre de la page #}
-{% block title %}Titre BLOG{% endblock %}
+{% block title %}Accueil{% endblock %}
 
-{# Code html #}
 {% block content %}
-    <h1>PAGE ACCUEIL</h1>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum rem optio eum qui possimus.
-</p>
+<div class="container text-center p-3 mb-2 bg-secondary text-white">
+    
+  <h1 >{{title}}</h1>
 
-{% for article in articles %}    
-    <div class="article">
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.content }}</p>
+  <div class="container">
+        <div class={# "justify-content-center " #}>
+            <h1>ACCUEIL - Liste des articles</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum rem optio eum qui possimus.
+            </p>
+        </div>
+  </div>
+  
+  <div class="row p-3 mb-2 bg-warning text-dark justify-content-center">
+    {% for article in articles %}
+    <div class="article card mx-2 my-2 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+      <div class="card-body">
+        <h4 class="card-title">{{article.title}}</h4>
+        <p class="card-text text-justify">{{ article.content }}</p>
+        <a href="/blogMvc/posts/{{article.id}}" class="btn btn-secondary stretched-link">Voir l'article</a>
+      </div>
     </div>
-{% endfor %}
-
+    {% endfor %}
+  </div>
+  
+</div>
 {% endblock %}
 
-{% block javascript %}
-    <script>
-        // alert("Bienvenue");
-    </script>
+
+{% block javascript %}  
+<script></script>
 {% endblock %}

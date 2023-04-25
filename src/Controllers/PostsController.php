@@ -12,10 +12,26 @@ class PostsController extends Controller {
         ];
         $this->render('home.html.twig', $params);                    
     }
+   
+//******************** */
 
+    public function show($id) {
+        if (!$id) {
+            throw new \Exception("Ce post n'existe pas", 404);
+        }
+        $article = \App\Models\Post::getPostById($id);
+        // print_r($article);
+        // die;
+        $params = [
+            "article" => $article
+        ];
+        $this->render('post.html.twig', $params);                    
+    }
 
-    public function comment(){
-        echo 'Votre commentaire :';
+    public function comment($id) {
+        echo "post id : " . $id;
+        print_r($_POST);
+        die();        
     }
 
     
