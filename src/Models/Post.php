@@ -12,7 +12,7 @@ class Post extends Database {
 
     public static function getPostById($id) {
         if (!$id) throw new \Exception("Missing id", 500);
-        $results = self::$db->query("SELECT * FROM Posts WHERE id=" . $id . " LIMIT 1");
+        $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1");
         $tmp = $results->fetchAll();
         if (count($tmp)) {
             return $tmp[0];
@@ -20,16 +20,38 @@ class Post extends Database {
         throw new \Exception("Missing post", 404);
     }
  
-    public static function insertPost($title = NULL, $content, $parent_id = NULL, $user_id = NULL) {
-        // query
-        // $sql = INSERT INTO Posts VALUES(:title, :content, :parent_id, :user_id);
-        // $sql->execute([
-            //"title" => $title, 
-            // "content" => $content, 
-            // $parent_id, $user_id]); 
-        // $commentId = self::$db->lastInsertId();
-        // return $commentId;
-        // COURS https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes
+    public static function insertPost($content, $title = NULL, $id_parent = NULL, $id_user = NULL) {
+         //query
+         $statement = self::$db -> prepare ('INSERT INTO posts (content, title, id_parent, id_user) VALUES (?, ?, ?, ?)') ;
+         $statement -> execute ([
+            $content, 
+            $title,
+            $id_parent,
+            $id_user
+         ]);
+         $commentId = self::$db->lastInsertId();
+         return $commentId;        
     }
+/***************************************************************** */
+    public static function getCommentByPost($id_parent) {
+        if (!$id_parent) throw new \Exception("Missing id", 500);
+        $results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " LIMIT 10");
+        return $results->fetchAll();
+    }
+    //SELECT content FROM `posts` WHERE id_parent = 18;
+    
+    public static function connexion(){
+        $stmt = self::$db -> prepare ('INSERT INTO users (firstname, lastname, email, password, role) VALUES (?, ?, ?, ?, ?)') ;
+        $stmt -> execute ([
+           $firstname, 
+           $lastname,
+           $email,
+           $password,
+           $role
+        ]);
+/**************************************************************** */               
+    }
+
+    
 
 }

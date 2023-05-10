@@ -1,10 +1,36 @@
-<h2>Je commente</h2>
-<form method="post" accept-charset="UTF-8">    
-    <h3><label for="name">Username or email</label></h3>
-    <input id="name" type="text" name="name"
-        value="" placeholder="John17485">
-    <h3><label for="comment">Mon commentaire</label></h3>
-    <textarea id="commnent" name="comment"
-        value="" placeholder="Mon commentaire"></textarea> 
-    <input type="submit" value="Submit">
+<div class="row p-5 mb-5 mt-5 bg-light text-dark justify-content-center">
+  <h3 >Commentaire</h3>
+  <p>{{ id_parent.content|raw }}</p>
+</div>
+
+
+
+<form method="post" accept-charset="UTF-8" class="col-8 mx-auto"> 
+<div class="row g-3">
+  <div class="col ">
+    <label for="name" class="form-label">Prénom</label>
+    <input type="text" name="name" value="" class="form-control" placeholder="Prénom">
+  </div>
+  <div class="col ">
+    <label for="name" class="form-label">Nom</label>
+    <input type="text" name="name" value="" class="form-control" placeholder="Nom">
+  </div>
+</div>
+  <div class="row g-3 mt-2">
+    <div class="col">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Email">
+    </div>
+  </div>  
+  <div class="form-floating">
+    <div class="col pt-5">
+      <label for="comment" class="form-label">Mon commentaire</label>
+      <textarea name="comment" id="commnent"  value="" class="form-control" rows="4" placeholder="Votre commentaire"></textarea>
+    </div>
+  </div>
+  <div class="col-12 mt-3">
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+  </div>
 </form>
+
+
