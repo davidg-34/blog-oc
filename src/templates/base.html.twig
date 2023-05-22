@@ -20,17 +20,22 @@
 
     <div class="collapse navbar-collapse fw-bold justify-content-center" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto ">
+
+      <li class="nav-item">
+  <a class="nav-link" href="/arte14/bureau/admin.php">Administration </a>
+  </li>
+
         <li class="nav-item">
-            <a class="nav-link " href="{ ('blogMvc'/'posts.html.twig') }">Article </a>
+            <a class="nav-link " href="{{ ('blogMvc') }}">Article </a>
         </li>        
         <li class="nav-item">
-            <a class="nav-link " href="{ ('blogMvc'/'posts.inscription.twig') }">Inscription </a>
+            <a class="nav-link " href="{{ ('register') }}">Inscription </a>
         </li>        
         <li class="nav-item">
-            <a class="nav-link " href="{ ('blogMvc'/'posts.connexion.twig') }">Connexion </a>
+            <a class="nav-link " href="{{ ('login') }}">Connexion </a>
         </li>        
         <li class="nav-item">
-            <a class="nav-link" href="#">Administration </a>
+            <a class="nav-link" href="{{ ('login') }}">Administration </a>
         </li>
       </ul>
     </div>

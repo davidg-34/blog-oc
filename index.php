@@ -8,15 +8,21 @@ $router = new App\Router\Router($_SERVER['REQUEST_URI']);
 $router->get('/blogMvc/', 'Posts#index');
 $router->get('/blogMvc/posts', function(){ echo "<h3>LISTE DES ARTICLES :</h3>"; });
 $router->get('/blogMvc/posts/:id', 'Posts#show');
+
 $router->post('/blogMvc/posts/:id', 'Posts#comment');
 $router->post('blogMvc/posts/:id/comment', 'Posts#comment');
+$router->post('blogMvc/posts/:parent_id/comment', 'Posts#comment'); 
+/* $router->post('blogMvc/posts/:login', 'Posts#login'); */ 
+
+// Routes de connexion :
+$router->get('/blogMvc/login', 'Login#index');
+$router->post('/blogMvc/login', 'Login#index');
+$router->get('/blogMvc/login/', function(){ echo "<h3>INSCRIPTION :</h3>"; });
 
 
-$router->post('blogMvc/posts/:parent_id/comment', 'Posts#comment');
-
-
-$router->get('/blogMvc/inscription', function(){ echo "<h3>INSCRIPTION :</h3>"; });
-$router->get('/blogMvc/connexion', function(){ echo "<h3>CONNEXION :</h3>"; });
+$router->get('/blogMvc/register', 'Register#index');
+$router->post('/blogMvc/register', 'Register#index');
+$router->get('/blogMvc/register', function(){ echo "<h3>CONNEXION :</h3>"; });
 
 
 

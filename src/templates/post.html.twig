@@ -8,7 +8,7 @@
     
   <h1>Titre de l'article : {{article.title}}</h1>
 
-  <div class="container text-center">
+  <div class="container {# text-center #}">
         <div class="row ">
             <h3>Numéro de l'article : {{article.id}}</h3>
             <p>{{ article.content|raw }}</p>
@@ -16,11 +16,13 @@
   </div>
 
   {# *************************************************** #}
-  <div class="container text-center">
-        <div class="row ">
-            <h3>Commentaire : </h3>
-            <p>{{ comments[0]['content']|raw }}</p>
-        </div>
+  <div class="container bg-alert">
+    <h3>Commentaire : </h3>
+    
+        {% for comment in comments %}
+          {{ loop.revindex ~ '/'~ loop.length}}
+          <p>{{comment['content']}}</p>                   
+        {% endfor %}
   </div>
   {# *************************************************** #}
 
