@@ -5,20 +5,16 @@ namespace App\Controllers;
 class RegisterController extends Controller {
     
     // Méthode 
-    public function index() { 
-        $users = \App\Models\User::insertRegister(); //$_POST['lastname'], $_POST['email'], $_POST['password']
-        echo '<pre>';
-         print_r($users);
-        echo '</pre>';
-        //die();
-        //if (count($_POST)) { 
-            //$params = [
-                //'user' => $users
-                //"lastname" => $lastname, 
-                //"email" => $email,
-                //"password" => $password
-            //];
-        //}
+    public function index() {             
+        if (count($_POST)) { 
+            $request = new \App\Request();
+            $lastname = $request->getParam("lastname");
+            $email = $request->getParam("email");
+            $password =  $request->getParam("password");
+            $user = \App\Models\User::create($lastname, $email, $password);
+            header("Location: /blogMvc/login");  
+            die;
+        }                
         $this->render('register.html.twig', /* $params */);                    
     }
     
@@ -27,7 +23,6 @@ class RegisterController extends Controller {
         $registration = \App\Models\User::insertRegister($_POST['lastname'], $_POST['email'], $_POST['password'], $lastname, $email, $password, 21); 
         return $registration;     
     } */
-    //appeler la methode qui permet d’enregistrer le user dans la bdd
-    ////////**************************************************** */   
+     
 
 }

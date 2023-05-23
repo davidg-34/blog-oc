@@ -17,12 +17,12 @@ $router->post('blogMvc/posts/:parent_id/comment', 'Posts#comment');
 // Routes de connexion :
 $router->get('/blogMvc/login', 'Login#index');
 $router->post('/blogMvc/login', 'Login#index');
-$router->get('/blogMvc/login/', function(){ echo "<h3>INSCRIPTION :</h3>"; });
+//$router->get('/blogMvc/login/', function(){ echo "<h3>INSCRIPTION :</h3>"; });
 
 
 $router->get('/blogMvc/register', 'Register#index');
 $router->post('/blogMvc/register', 'Register#index');
-$router->get('/blogMvc/register', function(){ echo "<h3>CONNEXION :</h3>"; });
+// $router->get('/blogMvc/register', function(){ echo "<h3>CONNEXION :</h3>"; });
 
 
 

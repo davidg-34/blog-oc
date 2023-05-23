@@ -42,6 +42,7 @@ class Post extends Database {
         $results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " LIMIT 20");
         return $results->fetchAll();
     }
-        
+     
+    
 
 }

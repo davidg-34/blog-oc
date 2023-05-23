@@ -4,13 +4,13 @@ namespace App\Controllers;
 
 class PostsController extends Controller {
     
-    // Méthode qui récupère les données de la liste articles
+    // Appel de la méthode qui récupère les données de la liste articles
     public function index() {        
         $posts = \App\Models\Post::getPosts();
-        echo '<pre>';
-         print_r($posts);
-        echo '</pre>';
-        die();
+        //echo '<pre>';
+        // print_r($posts);
+        //echo '</pre>';
+        //die();
         $params = [
             'articles' => $posts
         ];
