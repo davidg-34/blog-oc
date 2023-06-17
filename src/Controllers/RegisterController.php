@@ -11,6 +11,8 @@ class RegisterController extends Controller {
             $lastname = $request->getParam("lastname");
             $email = $request->getParam("email");
             $password =  $request->getParam("password");
+            
+            // Appel du model qui récupère la fonction create dans la variable $user
             $user = \App\Models\User::create($lastname, $email, $password);
             header("Location: /blogMvc/login");  
             die;
@@ -18,11 +20,5 @@ class RegisterController extends Controller {
         $this->render('register.html.twig', /* $params */);                    
     }
     
-
-    /* public function register($lastname, $email, $password) {
-        $registration = \App\Models\User::insertRegister($_POST['lastname'], $_POST['email'], $_POST['password'], $lastname, $email, $password, 21); 
-        return $registration;     
-    } */
-     
 
 }

@@ -15,29 +15,31 @@
     <body>
     
     <nav class="navbar navbar-expand-md navbar-dark bg-secondary mb-4">
-    <a class="navbar-brand ms-5 fw-bold" href="#">BLOG</a>
+    <a class="navbar-brand ms-5 fw-bold" href="{{ ('/blogMvc/') }}">BLOG</a>
     
 
     <div class="collapse navbar-collapse fw-bold justify-content-center" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto ">
 
-      <li class="nav-item">
-  <a class="nav-link" href="/arte14/bureau/admin.php">Administration </a>
-  </li>
+        {% if userId == true %}
+                <li style="color: blue{# var(--clr-grey) #}">Bonjour <span style="font-weight: 600;">{{ user.email }}</span> !</li>
+        {% endif %}
 
         <li class="nav-item">
-            <a class="nav-link " href="{{ ('blogMvc') }}">Article </a>
+            <a class="nav-link " href="{{ ('/blogMvc/') }}">Article </a>
         </li>        
         <li class="nav-item">
-            <a class="nav-link " href="{{ ('register') }}">Inscription </a>
+            <a class="nav-link " href="{{ ('/blogMvc/register') }}">Inscription </a>
         </li>        
         <li class="nav-item">
-            <a class="nav-link " href="{{ ('login') }}">Connexion </a>
+            <a class="nav-link " href="{{ ('/blogMvc/login') }}">Connexion </a>
         </li>        
         <li class="nav-item">
-            <a class="nav-link" href="{{ ('login') }}">Administration </a>
+            <a class="nav-link" href="{{ ('/blogMvc/administration') }}"><i class="fas fa-at"></i>Administration </a>
         </li>
-      </ul>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ ('/blogMvc/logout') }}"><i class="fas fa-sign-out-alt"></i> Se déconnecter </a>
+        </li>      
     </div>
   </nav>
 
@@ -48,13 +50,13 @@
   <div>
 
   <hr>
-  <footer>
+  <footer class="fixed-bottom z-index-n1">
   <nav class="navbar navbar-expand-md navbar-dark bg-secondary  ">
         
     <div class="collapse navbar-collapse justify-content-center" id="navbarsExampleDefault">
       <ul class="navbar-nav fw-bold">
         <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Administration </a>
+              <a class="nav-link" href="{{ ('/blogMvc/administration') }}"><i class="fas fa-tachometer-alt"></i> Administration </a>
           <li class="nav-item">
               <a class="nav-link" href="#"><i class="fab fa-twitter"></i> Twiter </a>
           <li class="nav-item">
@@ -76,12 +78,4 @@
 
 </html>
 
-{# <img src="//placehold.it/60x30" class="ms-4" width="60" alt="Logo"> #}
 
-{# <div class="collapse navbar-collapse row gx-8" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto mx-auto ">
-        <?= nav_item('/blog/index.php', 'Accueil'); ?>
-        <?= nav_item('/blog/users.php', 'Utilisateurs'); ?>
-        <?= nav_item('/blog/posts.php', 'Articles'); ?>        
-      </ul>
-</div> #}

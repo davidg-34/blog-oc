@@ -12,27 +12,25 @@
   <div class="container">
         <div class={# "justify-content-center " #}>
             <h2>CONNEXION :</h2>
-            <p>Lorem ipsum dolor sit.
-            </p>
         </div>
   </div>
 
   {# <div class="row align-items-center col-8 my5"> #}
   <div class="row justify-content-center">
-    <div class="row col-8 gy-4 "
+    <div class="row col-8 gy-4">
       
-      <form class="row mb-3" method="post">
+      <form method="POST" action="/blogMvc/login">
         <div class="form-group">
-          <label for="email" class="form-label">Nom d'utilisateur</label>
-          <input type="text" value="" name="email" id="email" class="form-control" required="" autofocus="">
-        </div>
-
-        <div class="form-group">
-          <label for="password" class="form-label">Mot de passe</label>
-          <input type="password" name="password" id="password" class="form-control" required="">
+          <label for="email" class="form-label required">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required="required">
         </div>
          
-        <div class="col-12">
+        <div class="col-12 mt-4">
+          <label for="password" class="form-label required">Mot de passe</label>
+          <input type="password" class="form-control" id="password" name="password" required="required" minlength="6">
+        </div>
+         
+        <div class="col-12 mt-4">
           <button type="submit" class="btn btn-primary w-30">Se connecter</button>
           <input type="hidden" name="_csrf_token" value="766734c6982b31.TfdyhHspQlCagMQ47RCGPdkjfcKYHGK289FHoPEOtIw.O4IItjZvHQnI9fIMrCLkTLFQPIn1ajeCxJ4glsNl1us_nwvMFU16CfzkjQ">
         </div>
@@ -41,6 +39,8 @@
     </div>
   </div>
   
+</div>
+
 </div>
   
   {% endblock %}

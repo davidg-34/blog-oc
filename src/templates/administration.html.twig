@@ -1,0 +1,91 @@
+{# Appel du layout de la page #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block content %}
+
+<div class="container {# text-center #} ">
+    
+  <h1 >{{title}}</h1>
+
+  {# <div class="container">
+        <div class="justify-content-center ">
+            <h1>Administration :</h1>
+            
+        </div>
+  </div> #}
+
+    <div class="container text-center">
+
+
+        <form action="/blogMvc/administration" method="post" class="">
+          <h3 >Rédiger un article</h3>
+          <br>
+
+          <div class="row d-flex justify-content-center">
+
+            <div class="mb-3 col-8">
+              <label for="title" class="form-label" class="col-4">Titre :</label>
+              <div class="">
+                <input type="text" name="title" class="form-control required" id="title" placeholder="Titre de l'article">
+              </div>
+            </div>
+
+            <div class="mb-3 col-8">
+              <label for="content" class="form-label required">Article :</label>
+              <div class="">
+                <textarea name="content" class="form-control required" id="content" rows="7" cols="30" placeholder="Rédigez votre article"></textarea>
+              </div>
+            </div>
+
+            <div>
+              <input type="submit" class="btn btn-primary px-4 col-8" value="valider">
+            </div>
+        
+          </div> 
+       
+        </form>
+
+    </div>
+
+    <div class="container">
+
+      <a href="/blogMvc/administration/" <button type="button" class="btn btn-success operation"><i class="fas fa-pen"></i> Créer un nouvel article</a>
+			
+      <table class="table">
+      
+        <thead>
+          <tr>
+            <th scope="col">N° Article</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Date Publication</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th scope="row">row</th>
+            <td></td>
+            <td></td>
+            <td></td>          
+            <td>
+              <a class="btn btn-info operation" href="admin/resetPassword/"><i class="fas fa-redo"></i> Modifier</a>            
+              <a class="btn btn-danger operation" href="admin/deleteUser/"><i class="fas fa-trash-alt"></i> Supprimer</a>
+            </td>      
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+</div>
+
+  
+
+{# </div> #}
+
+{% endblock %}

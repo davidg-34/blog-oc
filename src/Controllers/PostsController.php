@@ -4,33 +4,39 @@ namespace App\Controllers;
 
 class PostsController extends Controller {
     
-    // Appel de la méthode qui récupère les données de la liste articles
+    // Appel de la méthode qui récupère la liste des articles et la session de l'utilisateur
     public function index() {        
         $posts = \App\Models\Post::getPosts();
+        $session = new \App\Session(); ///* !!!!!! */       
+        
         //echo '<pre>';
         // print_r($posts);
         //echo '</pre>';
         //die();
+
         $params = [
-            'articles' => $posts
+            'articles' => $posts,
+            'userId' => $session->get("userId") ///* !!!!!!! */
         ];
+        
         // Appel de la vue avec les articles récupérés
         $this->render('home.html.twig', $params);
     }
     
-    // Méthode présentant les commentaires liés à un article
+    // Méthode présentant 
     public function show($id) {
         if (!$id) {
             throw new \Exception("Ce post n'existe pas", 404);
         }
         
-        // initialisations de variables récupérant l'id de l'article et des commentaires
+        // Variables récupérant l'article et les commentaires en appelant l'id 
         $article = \App\Models\Post::getPostById($id);
         $comments = \App\Models\Post::getCommentByPost($id);
-         //echo '<pre>';
-         //  print_r($comments);        
-         //die;
-         // Récupération des données de l'article et des commentaires
+        //echo '<pre>';
+        //  print_r($article);        
+        //die;
+         
+         // Tableau associatif qui envoie les données de l'article et des commentaires à la vue
         $params = [
             "article" => $article, 
             "comments" => $comments
@@ -39,30 +45,17 @@ class PostsController extends Controller {
         //   print_r($comments);        
         //die;
 
-        //Appel de la vue des commentaires récupérés
+        //Appel de la vue 
         $this->render('post.html.twig', $params);                    
     }
 
-    /* public function comment($id) {
+    public function comment($id) {
         echo "post id : " . $id;
         $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, 21);      
-    } */
-/****************************************************************** */
-    /* public function commentedShow($id_parent) {
-        if (!$id_parent) {
-            throw new \Exception("Ce post n'existe pas", 404);
-        }
-        // print_r($article);
-        // die;
-        $params = [ 
-            "commentPost" => $commentPost
-        ];
-        $this->render('post.html.twig', $params);                    
-    } */
-/******************************************************************* */
-    /* public function commentShow($id_parent) {
-        echo "post id_parent : " . $id_parent;
-        $id_parent = \App\Models\Post::getCommentByPost($_POST['comment'], null, $id_parent, 21);      
-    } */
+    }
+
+    public function post($id){
+        $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, 21);
+    }
 
 }

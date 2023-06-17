@@ -22,14 +22,18 @@
       <div class="card-body">
         <h4 class="card-title">{{article.title}}</h4>
         <p class="card-text text-justify">{{ article.content }}</p>
-        <a href="/blogMvc/posts/{{article.id}}" class="btn btn-secondary stretched-link">Voir l'article</a>
+        <hr>
+        <a href="/blogMvc/posts/{{article.id}}" class="btn btn-secondary">Voir l'article</a>
       </div>
     </div>
     {% endfor %}
-  </div>
-
-    
+  </div>    
 </div>
+    {# Si l'utilisateur est connecté avec la variable de session, possibilité de créer un nouvel article #}
+    {% if userId %} 
+      <a href="/blogMvc/administration/" <button type="button" class="btn btn-danger">Créer un  nouvel article</button></a>
+    {% endif %}
+
 {% endblock %}
 
 

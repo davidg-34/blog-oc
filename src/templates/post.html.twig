@@ -4,24 +4,22 @@
 {% block title %}article {% endblock %}
 
 {% block content %}
-<div class="container text-center p-3 mb-2 bg-secondary text-white">
-    
-  <h1>Titre de l'article : {{article.title}}</h1>
 
-  <div class="container {# text-center #}">
-        <div class="row ">
-            <h3>Numéro de l'article : {{article.id}}</h3>
-            <p>{{ article.content|raw }}</p>
-        </div>
+<div class="container p-3 mb-5 {# bg-secondary text-white #}">
+    
+  <div class="container {# d-flex justify-content-center #}">
+    <h5 >Titre de l'article : {{article.title}}</h5>
+    <h5>Numéro de l'article : {{article.id}}</h5>
+    <p class="bg-light border border-dark-subtle p-4">{{ article.content|raw }}</p>
   </div>
 
   {# *************************************************** #}
-  <div class="container bg-alert">
-    <h3>Commentaire : </h3>
+  <div class="container mt-5 mb-5">
+    <h5>Commentaires : </h5>
     
         {% for comment in comments %}
           {{ loop.revindex ~ '/'~ loop.length}}
-          <p>{{comment['content']}}</p>                   
+          <p class="bg-light border border-dark-subtle p-4">{{comment['content']}}</p>                   
         {% endfor %}
   </div>
   {# *************************************************** #}
@@ -31,7 +29,8 @@
 
   {{ include('_comment.html.twig', { 'paramName': 'paramValue' }) }}
     
-  
+</div> 
+
 </div>
 {% endblock %}
 
