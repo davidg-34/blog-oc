@@ -7,7 +7,7 @@ class PostsController extends Controller {
     // Appel de la méthode qui récupère la liste des articles et la session de l'utilisateur
     public function index() {        
         $posts = \App\Models\Post::getPosts();
-        $session = new \App\Session(); ///* !!!!!! */       
+        $session = new \App\Session();      
         
         //echo '<pre>';
         // print_r($posts);
@@ -16,20 +16,20 @@ class PostsController extends Controller {
 
         $params = [
             'articles' => $posts,
-            'userId' => $session->get("userId") ///* !!!!!!! */
+            'userId' => $session->get("userId")
         ];
         
         // Appel de la vue avec les articles récupérés
         $this->render('home.html.twig', $params);
     }
     
-    // Méthode présentant 
+    // Méthode présentant la page 404
     public function show($id) {
         if (!$id) {
             throw new \Exception("Ce post n'existe pas", 404);
         }
         
-        // Variables récupérant l'article et les commentaires en appelant l'id 
+        // Initialisation des variables
         $article = \App\Models\Post::getPostById($id);
         $comments = \App\Models\Post::getCommentByPost($id);
         //echo '<pre>';

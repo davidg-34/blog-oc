@@ -17,44 +17,34 @@
   </div> #}
 
     <div class="container text-center">
-
-
         <form action="/blogMvc/administration" method="post" class="">
           <h3 >Rédiger un article</h3>
           <br>
-
           <div class="row d-flex justify-content-center">
-
             <div class="mb-3 col-8">
               <label for="title" class="form-label" class="col-4">Titre :</label>
               <div class="">
                 <input type="text" name="title" class="form-control required" id="title" placeholder="Titre de l'article">
               </div>
             </div>
-
             <div class="mb-3 col-8">
               <label for="content" class="form-label required">Article :</label>
               <div class="">
                 <textarea name="content" class="form-control required" id="content" rows="7" cols="30" placeholder="Rédigez votre article"></textarea>
               </div>
             </div>
-
             <div>
               <input type="submit" class="btn btn-primary px-4 col-8" value="valider">
-            </div>
-        
-          </div> 
-       
-        </form>
-
+            </div>        
+          </div>       
+        </form>        
     </div>
 
     <div class="container">
-
-      <a href="/blogMvc/administration/" <button type="button" class="btn btn-success operation"><i class="fas fa-pen"></i> Créer un nouvel article</a>
+      <a href="/blogMvc/addpost/" <button type="button" class="btn btn-success operation"><i class="fas fa-pen"></i> Créer un nouvel article</a>
 			
       <table class="table">
-      
+            
         <thead>
           <tr>
             <th scope="col">N° Article</th>
@@ -68,18 +58,17 @@
         <tbody>
           <tr>
             <th scope="row">row</th>
-            <td></td>
-            <td></td>
-            <td></td>          
+            <td>{{article.title}}</td>
+            <td>{{ article.content }}</td>
+            <td>{{ article.created|date("d m Y à H i s") }}</td>          
             <td>
-              <a class="btn btn-info operation" href="admin/resetPassword/"><i class="fas fa-redo"></i> Modifier</a>            
-              <a class="btn btn-danger operation" href="admin/deleteUser/"><i class="fas fa-trash-alt"></i> Supprimer</a>
+              <a class="btn btn-info operation" href="/blogMvc/updatePost/"><i class="fas fa-redo"></i> Modifier</a>            
+              <a class="btn btn-danger operation" href="/blogMvc/deletePost/"><i class="fas fa-trash-alt"></i> Supprimer</a>
             </td>      
           </tr>
         </tbody>
 
       </table>
-
     </div>
 
 </div>

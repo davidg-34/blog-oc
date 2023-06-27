@@ -8,25 +8,32 @@
     
   <h1 >{{title}}</h1>
 
-  <div class="container">
-        <div class={# "justify-content-center " #}>
-            <h1>ACCUEIL - Liste des articles</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum rem optio eum qui possimus.
-            </p>
+  <div class="container mb-5">
+        <div>
+            <h1>ACCUEIL - Liste des articles</h1>            
         </div>
   </div>
   
   <div class="row p-3 mb-2 bg-warning text-dark justify-content-center">
+
     {% for article in articles %}
-    <div class="article card mx-2 my-2 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+
+    <div class="article card  mx-2 my-2 col-xs-6 col-sm-9 col-md-9 col-lg-4 col-xl-5">
       <div class="card-body">
         <h4 class="card-title">{{article.title}}</h4>
         <p class="card-text text-justify">{{ article.content }}</p>
-        <hr>
+
+        <p class="cart-text text-justify"><strong>Email :</strong> {{article.email}}
+        <p class="cart-text text-justify"><strong>Nom :</strong> {{article.lastname}} <strong>Prénom :</strong> {{article.firstname}}
+        <p class="cart-text text-justify">{{session.userId}}
+
+        <p class="card-text text-justify"><span style="color: blue">Date publication : </span></br>{{ article.created|date("d m Y à H i s") }}</p>                
         <a href="/blogMvc/posts/{{article.id}}" class="btn btn-secondary">Voir l'article</a>
       </div>
     </div>
+
     {% endfor %}
+    
   </div>    
 </div>
     {# Si l'utilisateur est connecté avec la variable de session, possibilité de créer un nouvel article #}

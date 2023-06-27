@@ -21,8 +21,8 @@
     <div class="collapse navbar-collapse fw-bold justify-content-center" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto ">
 
-        {% if userId == true %}
-                <li style="color: blue{# var(--clr-grey) #}">Bonjour <span style="font-weight: 600;">{{ user.email }}</span> !</li>
+        {% if userId %}
+                <li style="color: blue">Bonjour <span style="font-weight: 600;">{{ session.lastname }}</span> !</li>
         {% endif %}
 
         <li class="nav-item">

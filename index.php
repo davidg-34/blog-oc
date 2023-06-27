@@ -37,6 +37,14 @@ $router->post('/blogMvc/session', 'Session#index');
 $router->get('/blogMvc/administration', 'Admin#index');
 $router->post('/blogMvc/administration', 'Admin#index');
 
+
+
+$router->get('/blogMvc/addpost', 'Addpost#index');
+$router->post('/blogMvc/addpost', 'Addpost#index');
+
+$router->get('/blogMvc/deletepost', 'Deletepost#index');
+$router->post('/blogMvc/deletepost', 'Deletepost#index');
+
 //$router->get('/blogMvc/administration/post/:id', 'Post#show');
 //$router->post('/blogMvc/administration/post/:id', 'Post#show');
 
