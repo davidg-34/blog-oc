@@ -5,9 +5,9 @@ namespace App\Models;
 class Post extends Database {
 
     // Selectionne et affiche les articles sur la page 'liste article'
-    public static function getPosts() {        
-        /*  $results = self::$db->query("SELECT * FROM posts ORDER BY created DESC LIMIT 10"); */
+    public static function getPosts() {  
         $results = self::$db->query("select posts.*, users.firstname, users.lastname, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id ORDER BY posts.created DESC LIMIT 10");
+        //$results = self::$db->query("select posts.id, posts.title, posts.content, users.firstname, users.lastname, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id ORDER BY posts.created DESC LIMIT 10");
         return $results->fetchAll();
     }
 
@@ -45,7 +45,13 @@ class Post extends Database {
         $results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " LIMIT 20");
         return $results->fetchAll();
     }
-     
 
+    public static function deletePost($id){
+        $results = self::$db -> prepare ('DELETE FROM posts WHERE id = ?');
+        $results -> execute ([$id]);
+        return $results->fetch();
+    }
     
 }
+
+    

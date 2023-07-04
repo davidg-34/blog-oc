@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class PostsController extends Controller {
     
-    // Appel de la méthode qui récupère la liste des articles et la session de l'utilisateur
+    // Méthode qui récupère la liste des articles et la session de l'utilisateur
     public function index() {        
         $posts = \App\Models\Post::getPosts();
         $session = new \App\Session();      
@@ -23,7 +23,7 @@ class PostsController extends Controller {
         $this->render('home.html.twig', $params);
     }
     
-    // Méthode présentant la page 404
+    // Méthode présentant les données  
     public function show($id) {
         if (!$id) {
             throw new \Exception("Ce post n'existe pas", 404);
@@ -33,7 +33,7 @@ class PostsController extends Controller {
         $article = \App\Models\Post::getPostById($id);
         $comments = \App\Models\Post::getCommentByPost($id);
         //echo '<pre>';
-        //  print_r($article);        
+        //  print_r($comments);        
         //die;
          
          // Tableau associatif qui envoie les données de l'article et des commentaires à la vue
@@ -42,7 +42,7 @@ class PostsController extends Controller {
             "comments" => $comments
         ];
         //echo '<pre>';
-        //   print_r($comments);        
+        //   print_r($article);        
         //die;
 
         //Appel de la vue 

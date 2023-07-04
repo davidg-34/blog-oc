@@ -16,6 +16,7 @@ $router->post('blogMvc/posts/:parent_id/comment', 'Posts#comment');
 //$router->post('blogMvc/posts/:login', 'Posts#login'); 
 
 
+
 // Routes de connexion :
 $router->get('/blogMvc/register', 'Register#index');
 $router->post('/blogMvc/register', 'Register#index');
@@ -37,16 +38,13 @@ $router->post('/blogMvc/session', 'Session#index');
 $router->get('/blogMvc/administration', 'Admin#index');
 $router->post('/blogMvc/administration', 'Admin#index');
 
+// Routes mise à jour et suppression d'un article dans le tableau de bord
+$router->get('/blogMvc/administration/posts/:id/edit', 'Admin#edit');
+//$router->post('/blogMvc/administration/posts/:id/edit', 'Admin#edit');
+$router->get('/blogMvc/administration/posts/:id/delete', 'Admin#delete');
+//$router->post('/blogMvc/administration/posts/:id/delete', 'Admin#delete');
 
 
-$router->get('/blogMvc/addpost', 'Addpost#index');
-$router->post('/blogMvc/addpost', 'Addpost#index');
-
-$router->get('/blogMvc/deletepost', 'Deletepost#index');
-$router->post('/blogMvc/deletepost', 'Deletepost#index');
-
-//$router->get('/blogMvc/administration/post/:id', 'Post#show');
-//$router->post('/blogMvc/administration/post/:id', 'Post#show');
 
 
 $router->run(); 

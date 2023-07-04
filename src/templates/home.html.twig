@@ -25,7 +25,7 @@
 
         <p class="cart-text text-justify"><strong>Email :</strong> {{article.email}}
         <p class="cart-text text-justify"><strong>Nom :</strong> {{article.lastname}} <strong>Prénom :</strong> {{article.firstname}}
-        <p class="cart-text text-justify">{{session.userId}}
+        <p class="cart-text text-justify">userId {{article.id}}
 
         <p class="card-text text-justify"><span style="color: blue">Date publication : </span></br>{{ article.created|date("d m Y à H i s") }}</p>                
         <a href="/blogMvc/posts/{{article.id}}" class="btn btn-secondary">Voir l'article</a>

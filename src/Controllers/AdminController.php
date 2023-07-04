@@ -9,7 +9,7 @@ class AdminController extends Controller {
         $session = new \App\Session();
         $posts = \App\Models\Post::getPosts();
         //echo '<pre>';
-        //print_r($posts);        
+        //print_r($session);        
         //die;
 
         $params = [
@@ -25,11 +25,17 @@ class AdminController extends Controller {
 
         if ($session->has("userId")) {            
             if(count($_POST)){
-                $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, 21);
+                //if $id > 0{
+                    // $updateId = \App\Models\Post::updatePost();
+                    // update
+                //}else{
+                    $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, 21);
+
+                }
                 //echo '<pre>';
                 //  print_r($articleId);        
                 //die;
-            }               
+            //}               
             
         }else{
             header("Location: /blogMvc/");
@@ -37,5 +43,27 @@ class AdminController extends Controller {
         }
     }
 
+    public function delete($id){        
+        $session = new \App\Session();
+        
+        if ($session->has("userId")) {
+            $deleteId = \App\Models\Post::deletePost($id);  
+            header("Location: /blogMvc/administration");
+        }else{
+            header("Location: /blogMvc/");
+            throw new \Exception("Vous devez être connecté");
+        }
+    }
+    
+    /* public function edit($id){
+        $session = new\App\Models\Post::postUpdate($id);
+        $posts = App\Models\Posts::getPost();
+        $post = \App\Models\Posts::updatePost();
 
+        $params[
+            'post' => $post,
+            'posts' => $posts
+        ];
+        $this->render('administration.html.twig', $params);
+    } */
 }
