@@ -4,18 +4,25 @@
 {% block title %}Accueil{% endblock %}
 
 {% block content %}
+
+{# Si l'utilisateur est connecté avec la variable de session, possibilité de créer un nouvel article #}
+    {% if userId %} 
+      <a href="/blogMvc/administration/" <button type="button" class="btn btn-success operation"><i class="fas fa-pen"></i> Créer un  nouvel article</button></a>
+    {% endif %}
+
 <div class="container text-center p-3 mb-2 bg-secondary text-white">
     
-  <h1 >{{title}}</h1>
+  <h1>{{title}}</h1>
 
   <div class="container mb-5">
         <div>
-            <h1>ACCUEIL - Liste des articles</h1>            
+            <h1>Liste des articles</h1>            
         </div>
   </div>
   
   <div class="row p-3 mb-2 bg-warning text-dark justify-content-center">
 
+    {# Affichage des articles #}
     {% for article in articles %}
 
     <div class="article card  mx-2 my-2 col-xs-6 col-sm-9 col-md-9 col-lg-4 col-xl-5">
@@ -35,14 +42,9 @@
     {% endfor %}
     
   </div>    
-</div>
-    {# Si l'utilisateur est connecté avec la variable de session, possibilité de créer un nouvel article #}
-    {% if userId %} 
-      <a href="/blogMvc/administration/" <button type="button" class="btn btn-danger">Créer un  nouvel article</button></a>
-    {% endif %}
+</div>    
 
 {% endblock %}
-
 
 {% block javascript %}  
 <script></script>

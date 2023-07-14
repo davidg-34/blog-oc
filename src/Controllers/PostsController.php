@@ -9,11 +9,7 @@ class PostsController extends Controller {
         $posts = \App\Models\Post::getPosts();
         $session = new \App\Session();      
         
-        //echo '<pre>';
-        // print_r($posts);
-        //echo '</pre>';
-        //die();
-
+        // La variable $params récupère les données dans un tableau associatif
         $params = [
             'articles' => $posts,
             'userId' => $session->get("userId")
@@ -32,28 +28,24 @@ class PostsController extends Controller {
         // Initialisation des variables
         $article = \App\Models\Post::getPostById($id);
         $comments = \App\Models\Post::getCommentByPost($id);
-        //echo '<pre>';
-        //  print_r($comments);        
-        //die;
-         
-         // Tableau associatif qui envoie les données de l'article et des commentaires à la vue
+                 
+         // Tableau associatif qui permet l'envoie les données de l'article et des commentaires à la vue
         $params = [
             "article" => $article, 
             "comments" => $comments
         ];
-        //echo '<pre>';
-        //   print_r($article);        
-        //die;
-
-        //Appel de la vue 
+        
+        //Appel de la vue avec les données du tableau en paramètre
         $this->render('post.html.twig', $params);                    
     }
 
+    // Méthode qui
     public function comment($id) {
         echo "post id : " . $id;
         $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, 21);      
     }
 
+    // Méthode qui
     public function post($id){
         $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, 21);
     }

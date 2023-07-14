@@ -4,12 +4,12 @@ namespace App\Models;
 
 class User extends Database {
     
-    // Fonction qui récupère l'email et le mdp de l'utilisateur 
+    // Fonction qui sélectionne/récupère l'email et le mdp de l'utilisateur 
     public static function authenticate($email, $password) {
         $user = self::$db->query("SELECT * FROM Users WHERE email = '" . $email . "' LIMIT 1");
         $tmp = $user->fetchAll();
+
         // Vérifie à l'aide d'un tampon que le mdp sélectionné/saisi par l'utilisateur existe dans la BDD 
-        
         if (count($tmp)) {
             $user = $tmp[0];
             if (password_verify($password, $user['password'])) {

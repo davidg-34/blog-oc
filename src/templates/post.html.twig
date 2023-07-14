@@ -1,37 +1,36 @@
 {# Appel du layout de la page #}
 {% extends 'base.html.twig' %}
 
-{% block title %}article {% endblock %}
+{% block title %} détail article {% endblock %}
 
 {% block content %}
 
-<div class="container p-3 mb-5 {# bg-secondary text-white #}">
+<div class="container p-3 mb-5">
     
-  <div class="container {# d-flex justify-content-center #}">
+  {# Sélection de l'article #}
+  <div class="container">
     <h5 >Titre de l'article : {{article.title}}</h5>
     <h5>Numéro de l'article : {{article.id}}</h5>
     <p class="bg-light border border-dark-subtle p-4">{{ article.content|raw }}</p>
   </div>
 
-  {# *************************************************** #}
   <div class="container mt-5 mb-5">
-    <h5>Commentaires : </h5>
-    
+    <h5>Commentaires : </h5>    
+        {# Affichage des commentaires #}
         {% for comment in comments %}
-          {{ loop.revindex ~ '/'~ loop.length}}
+          {# {{ loop.revindex ~ '/'~ loop.length}} #}
+          <p class="card-text text-justify">Le :  {{ article.created|date("d m Y à H i s") }}</p>
           <p class="bg-light border border-dark-subtle p-4">{{comment['content']}}</p>                   
         {% endfor %}
   </div>
-  {# *************************************************** #}
-
-  
+    
   <!-- ici, afficher les commantaires sur le post -->
 
   {{ include('_comment.html.twig', { 'paramName': 'paramValue' }) }}
     
 </div> 
 
-</div>
+{# </div> #}
 {% endblock %}
 
 

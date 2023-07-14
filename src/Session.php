@@ -6,12 +6,12 @@ class Session
 {
     // session_status() est utilisée pour connaitre l'état de la session courante.
     // PHP_SESSION_NONE si les sessions sont activées, mais qu'aucune n'existe.
-    //  Démarre une nouvelle session ou reprend une session existante.
+    // session_start() démarre une nouvelle session ou reprend une session existante.
     
 
+    // Initialisation de la session
     public function __construct()
     {
-        // Initialisation de la session
         if (session_status() === PHP_SESSION_NONE) {            
             session_start(); 
         }    

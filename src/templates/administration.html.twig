@@ -5,34 +5,29 @@
 
 {% block content %}
 
-<div class="container {# text-center #} ">
+<div class="container">
     
   <h1 >{{title}}</h1>
 
-  {# <div class="container">
-        <div class="justify-content-center ">
-            <h1>Administration :</h1>
-            
-        </div>
-  </div> #}
-
     <div class="container text-center">
-        <form action="/blogMvc/administration" method="post" class="">
+        <form action="/blogMvc/administration" method="POST" class="">
           <h3 >Rédiger un article</h3>
           <br>
+          {# input caché pour créer l'update #}
+          <input type="hidden" name="id" value="{{article.id}}" />
           <div class="row d-flex justify-content-center">
             <div class="mb-3 col-8">
               <label for="title" class="form-label" class="col-4">Titre :</label>
               <div class="">
-                <input type="text" name="title" class="form-control required" id="title" placeholder="Titre de l'article">
+                <input type="text" name="title" value="{{article.title}}" class="form-control required" id="title" placeholder="Titre de l'article">
               </div>
             </div>
             <div class="mb-3 col-8">
               <label for="content" class="form-label required">Article :</label>
               <div class="">
-                <textarea name="content" class="form-control required" id="content" rows="7" cols="30" placeholder="Rédigez votre article"></textarea>
+                <textarea name="content" class="form-control required" id="content" rows="7" cols="30" placeholder="Rédigez votre article">{{article.content}}</textarea>
               </div>
-            </div>
+            </div>            
             <div>
               <input type="submit" class="btn btn-primary px-4 col-8" value="valider">
             </div>        
@@ -41,8 +36,7 @@
     </div>
 
     <div class="container">
-      {# <a href="/blogMvc/addpost/" <button type="button" class="btn btn-success operation"><i class="fas fa-pen"></i> Créer un nouvel article</a> #}
-			
+
       <table class="table {# table-striped #} table-bordered table-hover table-responsive mt-5">
             
         <thead>
@@ -55,11 +49,12 @@
           </tr>
         </thead>
 
-            {% for article in articles %}
+        {# Affichage des des données dans le tableau de l'administrateur #}
+        {% for article in articles %}
         <tbody>
           <tr>
             <th scope="row">{{article.id}}</th>
-            <td>{{article.title}}</td>
+            <td>{{ article.title }}</td>
             <td>{{ article.firstname }}</td>
             <td>{{ article.created }}</td>
             <td class="text-center">
@@ -68,14 +63,12 @@
             </td>      
           </tr>
         </tbody>
-            {% endfor %}          
+        {% endfor %}          
 
       </table>
     </div>
 
 </div>
-
-  
 
 {# </div> #}
 
