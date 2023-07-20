@@ -7,6 +7,7 @@ class Post extends Database {
     //Insertion de l'article et des commentaires dans la base de données à l'aide du formulaire
     public static function insertPost($content, $title = NULL, $id_parent = NULL, $id_user = NULL) {
 
+
          $statement = self::$db -> prepare ('INSERT INTO posts (content, title, id_parent, id_user, created) VALUES (?, ?, ?, ?, now())') ;
          $statement -> execute ([
             $content,
@@ -15,6 +16,7 @@ class Post extends Database {
             $id_user
          ]);
          $commentId = self::$db->lastInsertId();
+
 
          // Retourne le dernier id saisi
          return $commentId;
@@ -31,13 +33,17 @@ class Post extends Database {
     public static function getPostById($id) {
         if (!$id) throw new \Exception("Missing id", 500);
         $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1");
+        $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1");
         $tmp = $results->fetchAll();
 
         // Compte tous les éléments du tableau dans une condition et retourne le premier élément de $id
         if (count($tmp)) {
+        if (count($tmp)) {
             return $tmp[0];
         }
         throw new \Exception("Missing post", 404);
+    }
+
     }
 
     //Sélectionne et affiche les commentaires de l'article appelé sur la page commentaire
@@ -46,6 +52,7 @@ class Post extends Database {
         $results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " LIMIT 20");
         return $results->fetchAll();
     }
+
 
     // Sélectionne un article à l'aide de l'id
     public static function getPost($id) {
@@ -79,6 +86,9 @@ class Post extends Database {
         return $results->fetchAll();
     }
 
+
 }
+
+
 
 

@@ -1,0 +1,71 @@
+[33mcommit 4e17944b43c8c07b736a2e3b2223e9d3f0a2ac3c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Thu Jul 20 09:00:07 2023 +0200
+
+    add phpMailer
+
+[33mcommit 15ef2ea4c2eda51883c3429be11504ea20e5c7bd[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Mon Jul 17 12:41:39 2023 +0200
+
+    contact
+
+[33mcommit 86320b18fcb35e43760dbdc122e9847c2556111f[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Fri Jul 14 16:37:48 2023 +0200
+
+    update
+
+[33mcommit f29cbc18749f7b59375587eac6f6f07cf107ab9c[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Tue Jul 4 10:26:47 2023 +0200
+
+    add delete
+
+[33mcommit 90e441fc27923aa12bde4b9a702e4fd342b93c1c[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Tue Jun 27 15:18:53 2023 +0200
+
+    new home
+
+[33mcommit d8caa7dbfda870d6d2cf9ae18b8c5f723c5326a4[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Sat Jun 17 09:34:53 2023 +0200
+
+    add logout
+
+[33mcommit 24ae698de802a9a498d4394721c3c5b9020315e2[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Tue May 23 21:19:28 2023 +0200
+
+    session and request added plus register and login modified
+
+[33mcommit d49ce1112c38e4b69968cb42e22b0f23eae16396[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Mon May 22 11:02:15 2023 +0200
+
+    add login and resgister
+
+[33mcommit 0f8ac3637c50a593d09857a95c51b1572af14b8b[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Wed May 10 20:41:54 2023 +0200
+
+    add comments
+
+[33mcommit e6e3e05564a2021e9910788fb90b9e7b8863c887[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Tue Apr 25 20:50:25 2023 +0200
+
+    ajout page post twig
+
+[33mcommit 261cdf1e5f698a984d40aee32a1327efe6eccced[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Mon Apr 17 17:14:06 2023 +0200
+
+    Edit navbar plus homepage with articles
+
+[33mcommit 1a4a48f0268191723387f0a96e2068d8dd6f25e3[m
+Author: davidg34 <ytnum01@gmail.com>
+Date:   Mon Apr 17 11:36:36 2023 +0200
+
+    first commit blogmvc
