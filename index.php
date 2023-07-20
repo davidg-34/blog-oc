@@ -7,10 +7,10 @@ $router = new App\Router\Router($_SERVER['REQUEST_URI']);
 
 
 // Route accueil du site
-$router->get('/blogMvc/', 'Posts#index');
+$router->get('/blogMvc/', 'Homepage#index');
 
-$router->get('/blogMvc/homepage', 'Homepage#index');
-$router->post('/blogMvc/homepage', 'Homepage#index');
+$router->get('/blogMvc/blog', 'Posts#index');
+// $router->post('/blogMvc/homepage', 'Homepage#index');
 
 // Routes des articles
 $router->get('/blogMvc/posts', function(){ echo "<h3>LISTE DES ARTICLES :</h3>"; });
@@ -20,8 +20,8 @@ $router->post('/blogMvc/posts', 'Posts#post');
 // Routes des commentaires
 $router->post('/blogMvc/posts/:id', 'Posts#comment');
 $router->post('blogMvc/posts/:id/comment', 'Posts#comment');
-$router->post('blogMvc/posts/:parent_id/comment', 'Posts#comment'); 
-//$router->post('blogMvc/posts/:login', 'Posts#login'); 
+$router->post('blogMvc/posts/:parent_id/comment', 'Posts#comment');
+//$router->post('blogMvc/posts/:login', 'Posts#login');
 
 
 // Routes de connexion :
@@ -35,7 +35,7 @@ $router->post('/blogMvc/login', 'Login#index');
 $router->get('/blogMvc/logout', 'Logout#index');
 $router->post('/blogMvc/logout', 'Logout#index');
 
-// Routes session 
+// Routes session
 $router->get('/blogMvc/session', 'Session#index');
 $router->post('/blogMvc/session', 'Session#index');
 
@@ -60,8 +60,8 @@ $router->post('/blogMvc/contact', function(){ echo "<h3>CONTACT :</h3>";}); */
 
 // Route contact
 
-$router->run(); 
- 
+$router->run();
+
 /* TODO LIST
 
 * le index.php devrait être dans un repertoire public qui serait le document_root (sécurité)

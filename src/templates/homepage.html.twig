@@ -8,65 +8,45 @@
 <div class="container text-center p-3 mb-2 {# bg-secondary text-white #}">
   <h1>{{title}}</h1>
 
-    
     <div class="row p-3 mb-2 bg-warning text-dark justify-content-center">
-       
-        <img src="{{raphael.jpg}}" class="img-fluid" alt="Raphael" >
-        <img src="/raphael.jpg" class="img-fluid" alt="Raphael" >
-        
-          <h1>David Guion</h1>
-            
-        <header class="masthead" style="background-image: url('Content/startbootstrap-clean-blog-gh-pages/img/home-bg.jpg')"> 
 
-       
+        <img src="/blogMvc/public/raphael.jpg" class="img-fluid" alt="Raphael" style="max-height: 250px; width: auto">
+
+          <h1>David Guion</h1>
+
+        <header class="masthead" style="background-image: url('Content/startbootstrap-clean-blog-gh-pages/img/home-bg.jpg')">
+
+
         <div class="container">
             <div class="row">
-                <div class="{# col-lg-8 col-md-10 mx-auto #}">
+                <div class="col-lg-8 col-md-10 mx-auto">
                     <h3>Bienvenue sur mon blog !<i class="bi bi-github"></i></h3>
-                    <p> Celui-ci a été réalisé en PHP avec une architecture MVC Orienté objet.</p> 
-        
-                    
-    <div class="container px-5 ">
-        <div class="row justify-content-center ">
-            <div class="col">
-            <div class="p-3"><button type="button" class="btn btn-success"><i class="fab fa-github fa-lg"></i> github</button></div>
+                    <p> Celui-ci a été réalisé en PHP avec une architecture MVC Orienté objet.</p>
+                </div>
             </div>
-            <div class="col">
-            <div class="p-3"><button type="button" class="btn btn-success"><i class="fab fa-linkedin fa-lg"></i> linkedin</button></div>
-            </div>
-            <div class="col">
-            <div class="p-3"><button type="button" class="btn btn-success"><i class="fab fa-twitter-square fa-lg"></i> twitter</button></div>
-            </div>
-            {# <button class=pull-right>Je suis à droite</button> #}
         </div>
 
-            <nav class="navbar navbar-expand-md navbar-dark   ">          
-                <div class="collapse navbar-collapse justify-content-center">
-                    <ul class="navbar-nav fw-bold ">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fab fa-twitter"></i> Twiter </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fab fa-linkedin"></i></i> Linkedin </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fab fa-facebook-square"></i> facebook </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+        <div class="container">
+            <ul class="list-inline">
+                <li class="list-inline-item"> 
+                    <a href="https://github.com/davidg-34" target="_blank" <button type="button" class="btn btn-success p-3 mx-5" {# style="width:8vw" #}><i class="fab fa-github fa-lg"></i> github</button></a>
+                </li>
+                <li class="list-inline-item"> 
+                    <a href="https://www.linkedin.com/company/mon-compte" target="_blank" <button type="button" class="btn btn-success p-3 mx-5" {# style="width:8vw" #}><i class="fab fa-linkedin fa-lg"></i> linkedin</button></a>
+                </li>
+                <li class="list-inline-item"> 
+                    <a href="https://twitter.com/" target="_blank" <button type="button" class="btn btn-success p-3 mx-5" {# style="width:8vw" #}><i class="fab fa-twitter-square fa-lg"></i> twitter</button></a>
+                </li>
+            </ul>
+                <a href="/blogMvc/public/cv.pdf" target="_blank" class="btn btn-success">Telecharger mon CV !</a>
+        </div> 
 
     </div>
-                    
-                </div>
-            </div>
-        </div> 
-                <a href="asset/cv.pdf" target="_blank" class="btn btn-success">Telecharger mon CV !</a>
-    </div>    
-</div>    
+
+</div>
 
 {% endblock %}
 
-{% block javascript %}  
+{% block javascript %}
 <script></script>
 {% endblock %}
