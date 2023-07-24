@@ -22,6 +22,9 @@ class RegisterController extends Controller {
         // Appel de la vue               
         $this->render('register.html.twig');                    
     }
-    
+    /* $mail = \App\ */
+            // POURQUOI DANS REGISTER IL Y A HEADER() + RENDER ?????
+            /* header("Location: /blogMvc/contact");  
+            die; */
 
 }
