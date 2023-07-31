@@ -28,8 +28,11 @@
             <li class="nav-item">
               <a class="nav-link " href="{{ ('/blogMvc/contact') }}">Contact </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link " href="{{ ('/blogMvc/logout') }}">deconnexion </a>
+            </li>
             {% if userId %}          
-                <ul style="color: #0D6EFD">Bonjour vous êtes connecté {{userId}}</span>{{ article.id }} {{ article.email }} !</ul>
+                <ul style="color: #0D6EFD">Bonjour {{userId}} {{ userUsername }} vous êtes connecté</span>{{ article.id }} {{ article.email }} !</ul>
             {% endif %}  
           </ul>
           <a class="nav-link " href="{{ ('/blogMvc/register') }}">
