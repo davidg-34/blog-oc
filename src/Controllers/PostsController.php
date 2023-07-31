@@ -39,11 +39,20 @@ class PostsController extends Controller {
         $this->render('post.html.twig', $params);
     }
 
-    // Méthode qui
+    // Méthode qui insère les commentaires de l'article     
     public function comment($id) {
-        echo "post id : " . $id;
-        $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, 21);
-        header('Location: /blogMvc/posts/' . $id);
+        $session = new \App\Session();
+        
+        // Condition qui empêche ou autorise la publication du commentaire si l'on n'est ou pas en session
+        if (!$session->has("userId")) {
+            echo '<h4> vous devez être connecté pour ajouter un commentaire.</h4>';
+            //throw new \Exception("Vous devez être connecté pour ajouter un commentaire.");
+            $this->render('post.html.twig');
+        }else{
+            echo "post id : " . $id;
+            $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, 21);
+            header('Location: /blogMvc/posts/' . $id);
+        }
     }
 
     // Méthode qui

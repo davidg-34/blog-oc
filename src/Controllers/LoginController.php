@@ -7,7 +7,7 @@ class LoginController extends Controller {
     public function index() {  
         
         $session = new \App\Session();
-        // Si l'utilisateur est déjà inscrit renvoi vers la page article/accueil
+        // Si l'utilisateur est déjà inscrit renvoi vers la page accueil
         if ($session->has("userId")) {
             header("Location: /blogMvc/");
             die;
@@ -29,9 +29,9 @@ class LoginController extends Controller {
                 // Met les données de l'utilisateur en session
                 $session->set('userId', $user['id']);
                 $session->set('userEmail', $user['email']);
-                $session->set('userName', $user['lastname']);
+                $session->set('userName', $user['username']);
                 
-                header("Location: /blogMvc/");// Renvoi vers la page accueil/article
+                header("Location: /blogMvc/administration");// Renvoi vers la page administration
                 die;
             }
             // Si les données ne correspondent pas à la BDD : "identifications invalides"   

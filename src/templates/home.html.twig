@@ -5,12 +5,12 @@
 
 {% block content %}
 
-{# Si l'utilisateur est connecté avec la variable de session, possibilité de créer un nouvel article #}
+{# Si l'utilisateur est connecté avec la variable de session, affiche le bouton 'Créer un nouvel article' #}
     {% if userId %} 
-      <a href="/blogMvc/administration/" <button type="button" class="btn btn-success operation"><i class="fas fa-pen"></i> Créer un  nouvel article</button></a>
+      <a href="/blogMvc/administration/" <button type="button" class="btn btn-warning {# operation #}"><i class="fas fa-pen"></i> Créer un  nouvel article</button></a>
     {% endif %}
 
-<div class="container text-center p-3 mb-2 bg-secondary text-white">
+<div class="container text-center p-3 mb-2">
     
   <h1>{{title}}</h1>
 
@@ -20,19 +20,18 @@
         </div>
   </div>
   
-  <div class="row p-3 mb-2 bg-warning text-dark justify-content-center">
+  <div class="row p-3 mb-2 bg-body-secondary rounded-2 justify-content-center">
 
     {# Affichage des articles #}
     {% for article in articles %}
 
-    <div class="article card  mx-2 my-2 col-xs-6 col-sm-9 col-md-9 col-lg-4 col-xl-5">
+    <div class="article card  mx-2 my-2 col-xs-6 col-sm-9 col-md-9 col-lg-4 col-xl-5 border border-primary">
       <div class="card-body">
         <h4 class="card-title">{{article.title}}</h4>
         <p class="card-text text-justify">{{ article.content }}</p>
 
         <p class="cart-text text-justify"><strong>Email :</strong> {{article.email}}
-        <p class="cart-text text-justify"><strong>Nom :</strong> {{article.lastname}} <strong>Prénom :</strong> {{article.firstname}}
-        <p class="cart-text text-justify">userId {{article.id}}
+        <p class="cart-text text-justify"><strong>Auteur :</strong> {{article.username}}
 
         <p class="card-text text-justify"><span style="color: blue">Date publication : </span></br>{{ article.created|date("d m Y à H i s") }}</p>                
         <a href="/blogMvc/posts/{{article.id}}" class="btn btn-secondary">Voir l'article</a>

@@ -24,7 +24,7 @@ class Post extends Database {
 
     // Selectionne et affiche les articles sur la page 'liste article'
     public static function getPosts() {
-        $results = self::$db->query("select posts.*, users.firstname, users.lastname, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id WHERE posts.id_parent is null ORDER BY posts.created DESC LIMIT 10");
+        $results = self::$db->query("select posts.*, users.username, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id WHERE posts.id_parent is null ORDER BY posts.created DESC LIMIT 10");
         //$results = self::$db->query("select posts.id, posts.title, posts.content, users.firstname, users.lastname, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id ORDER BY posts.created DESC LIMIT 10");
         return $results->fetchAll();
     }
@@ -33,23 +33,24 @@ class Post extends Database {
     public static function getPostById($id) {
         if (!$id) throw new \Exception("Missing id", 500);
         $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1");
-        $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1");
+       /*  $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1"); */
         $tmp = $results->fetchAll();
 
         // Compte tous les éléments du tableau dans une condition et retourne le premier élément de $id
-        if (count($tmp)) {
+        if (count($tmp)) {/* !!!!!!!!!!!!!!!!!!!!!!!!! */
         if (count($tmp)) {
             return $tmp[0];
         }
         throw new \Exception("Missing post", 404);
-    }
+        }
 
     }
 
     //Sélectionne et affiche les commentaires de l'article appelé sur la page commentaire
     public static function getCommentByPost($id_parent) {
         if (!$id_parent) throw new \Exception("Missing id", 500);
-        $results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " LIMIT 20");
+        //$results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " LIMIT 20");
+        $results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " AND status = 1 LIMIT 20");
         return $results->fetchAll();
     }
 

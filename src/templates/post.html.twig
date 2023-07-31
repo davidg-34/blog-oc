@@ -7,7 +7,7 @@
 
 <div class="container p-3 mb-5">
     
-  {# Sélection de l'article #}
+  {# Affichage de l'article sélectionné #}
   <div class="container">
     <h5 >Titre de l'article : {{article.title}}</h5>
     <h5>Numéro de l'article : {{article.id}}</h5>
@@ -15,7 +15,7 @@
   </div>
 
   <div class="container mt-5 mb-5">
-    <h5>Commentaires : </h5>    
+    <h5 class = p-3>Commentaires : </h5>    
         {# Affichage des commentaires #}
         {% for comment in comments %}
           {# {{ loop.revindex ~ '/'~ loop.length}} #}
@@ -23,11 +23,15 @@
           <p class="bg-light border border-dark-subtle p-4">{{comment['content']}}</p>                   
         {% endfor %}
   </div>
+  
     
   <!-- ici, afficher les commantaires sur le post -->
-
-  {{ include('_comment.html.twig', { 'paramName': 'paramValue' }) }}
-    
+  {% if not userId %}
+    {{ include('_comment.html.twig', { 'paramName': 'paramValue' }) }} 
+  {% else %} 
+    <strong>VOUS DEVEZ ETRE CONNECTE POUR AJOUTER UN COMMENTAIRE.</strong>
+  {% endif %}  
+  
 </div> 
 
 {# </div> #}

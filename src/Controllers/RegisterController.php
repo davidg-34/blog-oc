@@ -10,12 +10,12 @@ class RegisterController extends Controller {
         if (count($_POST)) { 
             // Récupère la classe Request et initialise les 3 clés du tableau params de la méthode getParam
             $request = new \App\Request();
-            $lastname = $request->getParam("lastname");
+            $username = $request->getParam("username");
             $email = $request->getParam("email");
             $password =  $request->getParam("password");
             
             // Récupère la requête create dans la variable $user
-            $user = \App\Models\User::create($lastname, $email, $password);
+            $user = \App\Models\User::create($username, $email, $password);
             header("Location: /blogMvc/login");  
             die;
         } 

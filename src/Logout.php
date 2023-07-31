@@ -12,7 +12,8 @@ class Logout
                    // Supprimer les sessions
                    unset($_SESSION['userId']);
                    unset($_SESSION['userEmail']);
-                   unset($_SESSION['userName']);
+                   //unset($_SESSION['userName']);
+                   unset($_SESSION['userUsername']);
        
                    header('Location: /blogMvc/'); // Retour page accueil
                 }
