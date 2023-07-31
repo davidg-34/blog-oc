@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
@@ -24,23 +26,23 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link " href="{{ ('/blogMvc/blog') }}">Articles </a>
-            </li>            
+            </li>
             <li class="nav-item">
               <a class="nav-link " href="{{ ('/blogMvc/contact') }}">Contact </a>
             </li>
             <li class="nav-item">
               <a class="nav-link " href="{{ ('/blogMvc/logout') }}">deconnexion </a>
             </li>
-            {% if userId %}          
-                <ul style="color: #0D6EFD">Bonjour {{userId}} {{ userUsername }} vous êtes connecté</span>{{ article.id }} {{ article.email }} !</ul>
-            {% endif %}  
+            {% if userId %}
+                <ul style="color: #0D6EFD">Bonjour {{ userName }}, vous êtes connecté(e)</span>!</ul>
+            {% endif %}
           </ul>
           <a class="nav-link " href="{{ ('/blogMvc/register') }}">
           <button class="btn btn-outline-primary me-4" type="submit">Inscription</button>
           </a>
           <a class="nav-link " href="{{ ('/blogMvc/login') }}">
           <button class="btn btn-outline-primary me-4" type="submit">Connexion</button>
-          </a>          
+          </a>
         </div>
       </div>
     </nav>
@@ -53,20 +55,20 @@
 
     <footer class=" ">
       <nav class="navbar navbar-expand-sm bg-body-secondary border-top border-primary">
-        <div class="collapse navbar-collapse justify-content-center" id="navbarsExampleDefault">
+        <div class="navbar-collapse justify-content-center" id="navbarsExampleDefault">
           <ul class="navbar-nav fw-bold ">
               <li class="nav-item">
                   <a class="nav-link" href="{{ ('/blogMvc/administration') }}"><i class="fas fa-tachometer-alt"></i> Administration </a>
-              </li>    
+              </li>
               <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fab fa-twitter"></i> Twiter </a>
-              </li>    
+              </li>
               <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fab fa-linkedin"></i></i> Linkedin </a>
-              </li>    
+              </li>
               <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fab fa-github fa-lg"></i> Github </a>
-              </li>    
+              </li>
           </ul>
         </div>
       </nav>
