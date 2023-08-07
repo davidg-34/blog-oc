@@ -5,6 +5,6 @@ $config = [
         "hostname" => "localhost",
         "dbname" => "blog",
         "username" => "root",
-        "password" => ""
+        "password" => "root"
     ]
 ];

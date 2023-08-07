@@ -6,8 +6,6 @@ class Post extends Database {
 
     //Insertion de l'article et des commentaires dans la base de données à l'aide du formulaire
     public static function insertPost($content, $title = NULL, $id_parent = NULL, $id_user = NULL) {
-
-
          $statement = self::$db -> prepare ('INSERT INTO posts (content, title, id_parent, id_user, created) VALUES (?, ?, ?, ?, now())') ;
          $statement -> execute ([
             $content,
@@ -16,8 +14,6 @@ class Post extends Database {
             $id_user
          ]);
          $commentId = self::$db->lastInsertId();
-
-
          // Retourne le dernier id saisi
          return $commentId;
     }
@@ -25,7 +21,6 @@ class Post extends Database {
     // Selectionne et affiche les articles sur la page 'liste article'
     public static function getPosts() {
         $results = self::$db->query("select posts.*, users.username, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id WHERE posts.id_parent is null ORDER BY posts.created DESC LIMIT 10");
-        //$results = self::$db->query("select posts.id, posts.title, posts.content, users.firstname, users.lastname, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id ORDER BY posts.created DESC LIMIT 10");
         return $results->fetchAll();
     }
 
@@ -46,7 +41,10 @@ class Post extends Database {
 
     }
 
-    //Sélectionne et affiche les commentaires de l'article appelé sur la page commentaire
+
+    // GESTION DES COMMENTAIRES
+
+    // Sélectionne et récupère les commentaires validés
     public static function getCommentByPost($id_parent) {
         if (!$id_parent) throw new \Exception("Missing id", 500);
         //$results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " LIMIT 20");
@@ -54,6 +52,14 @@ class Post extends Database {
         return $results->fetchAll();
     }
 
+    // Sélectionne les commentaire pour la page admin
+    public static function commentModeration(){
+        $results = self::$db->query("SELECT content FROM posts WHERE status = '0' ");
+        return $results->fetchAll();
+    }
+
+
+    // GESTION DES ARTICLES DANS LE TABLEAU DE LA PAGE ADMINISTRATEUR : 
 
     // Sélectionne un article à l'aide de l'id
     public static function getPost($id) {
@@ -78,7 +84,6 @@ class Post extends Database {
     // Méthode pour modifier un article
     public static function updatePost($id, $content, $title = NULL){
         $results = self::$db -> prepare ('UPDATE posts SET content = ?, title = ? WHERE id = ?');
-        //$results = self::$db -> prepare ("UPDATE posts SET content = '$content', title = '$title' WHERE id = '$id'");
         $results -> execute ([
             $content,
             $title,

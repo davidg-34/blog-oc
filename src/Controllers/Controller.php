@@ -1,5 +1,7 @@
 <?php
 namespace App\Controllers;
+use Twig\Extra\String\StringExtension;
+
 
 class Controller {
 
@@ -10,6 +12,7 @@ class Controller {
     {
         $this->twigLoader = new \Twig\Loader\FilesystemLoader('src/templates');
         $this->twig = new \Twig\Environment($this->twigLoader);
+        $this->twig->addExtension(new StringExtension());
     }
 
     public function render($template, $params = [])

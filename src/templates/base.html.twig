@@ -29,20 +29,21 @@
             </li>
             <li class="nav-item">
               <a class="nav-link " href="{{ ('/blogMvc/contact') }}">Contact </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="{{ ('/blogMvc/logout') }}">deconnexion </a>
-            </li>
-            {% if userId %}
-                <ul style="color: #0D6EFD">Bonjour {{ userName }}, vous êtes connecté(e)</span>!</ul>
-            {% endif %}
+            </li>  
+              {% if userId %}
+              <span class="p-2  text-primary">Bonjour <b>{{ userName }}</b>, vous êtes connecté(e) !</span>
+              {% endif %}
           </ul>
-          <a class="nav-link " href="{{ ('/blogMvc/register') }}">
-          <button class="btn btn-outline-primary me-4" type="submit">Inscription</button>
-          </a>
-          <a class="nav-link " href="{{ ('/blogMvc/login') }}">
-          <button class="btn btn-outline-primary me-4" type="submit">Connexion</button>
-          </a>
+              {% if not userId %}
+                <a class="nav-link m-2" href="{{ ('/blogMvc/register') }}">
+                  <button class="btn btn-outline-primary" type="submit"><i class="fas fa-user-edit"></i> Inscription</button>
+                </a>
+                <a class="nav-link m-2" href="{{ ('/blogMvc/login') }}">
+                  <button class="btn btn-outline-primary" type="submit"><i class="fas fa-sign-in"></i> Connexion</button>
+                </a>
+              {% else %}
+                <a href="{{ ('/blogMvc/logout') }}" <button type="button" class="btn btn-outline-primary"><i class="fa fa-sign-out" aria-hidden="true"></i> Deconnexion</button></a>
+              {% endif %}
         </div>
       </div>
     </nav>
@@ -53,10 +54,10 @@
       {% endblock %}
     </div>
 
-    <footer class=" ">
+    <footer class="">
       <nav class="navbar navbar-expand-sm bg-body-secondary border-top border-primary">
         <div class="navbar-collapse justify-content-center" id="navbarsExampleDefault">
-          <ul class="navbar-nav fw-bold ">
+          <ul class="navbar-nav fw-bold me-auto-md text-center">
               <li class="nav-item">
                   <a class="nav-link" href="{{ ('/blogMvc/administration') }}"><i class="fas fa-tachometer-alt"></i> Administration </a>
               </li>

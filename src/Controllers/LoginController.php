@@ -30,6 +30,7 @@ class LoginController extends Controller {
                 $session->set('userId', $user['id']);
                 $session->set('userEmail', $user['email']);
                 $session->set('userName', $user['username']);
+                $session->set('userRole', $user['role']);
                 
                 header("Location: /blogMvc/administration");// Renvoi vers la page administration
                 die;
@@ -40,9 +41,5 @@ class LoginController extends Controller {
         // Appel de la vue (page connexion) avec les données récupérés dans variable $params
         $this->render('login.html.twig', $params);                     
     }
-
-    // Souhaiter la bienvenue avec ce bloc de succès
-    /* div class="alert alert-success" role="alert">
-         Bonjour <?= echo $_SESSION['lastname']; ?> et bienvenue sur le site !
-    </div> */
+    
 }

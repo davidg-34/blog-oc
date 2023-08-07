@@ -22,14 +22,15 @@ class User extends Database {
     }
 
     // Fonction pour l'inscription de l'utilisateur
-    public static function create($username, $email, $password) { 
+    public static function create($username, $email, $password, $role) { 
         // Récupère dans la variable le mdp en mode hachage         
         $pwd = password_hash($password, PASSWORD_DEFAULT);   
-        $statement = self::$db->prepare('INSERT INTO users (username, email, password) VALUES (?, ?, ?)') ;
+        $statement = self::$db->prepare('INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)') ;
         $statement->execute ([
             $username, 
             $email, 
-            $pwd
+            $pwd,
+            $role
         ]);
         // Retourne la fonction avec le dernier enregistrement
         return self::$db->lastInsertId();         

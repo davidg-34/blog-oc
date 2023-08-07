@@ -13,9 +13,10 @@ class RegisterController extends Controller {
             $username = $request->getParam("username");
             $email = $request->getParam("email");
             $password =  $request->getParam("password");
+            $role = $request->getParam("role");
             
             // Récupère la requête create dans la variable $user
-            $user = \App\Models\User::create($username, $email, $password);
+            $user = \App\Models\User::create($username, $email, $password, $role);
             header("Location: /blogMvc/login");  
             die;
         } 

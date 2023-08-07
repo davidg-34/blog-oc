@@ -9,11 +9,12 @@
     
   <h1 >{{title}}</h1>
 
+    {# Formulaire article #}
+
     <div class="container text-center">
         <form action="/blogMvc/administration" method="POST" class="">
           <h3 >Rédiger un article</h3>
           <br>
-          {# input caché pour créer l'update #}
           <input type="hidden" name="id" value="{{article.id}}" />
           <div class="row d-flex justify-content-center">
             <div class="mb-3 col-8">
@@ -35,41 +36,55 @@
         </form>        
     </div>
 
+
+    {# Gestion des articles #}
+
     <div class="container">
+      <h3 class="mt-5 text-center">Gestion des articles</h3>
+        <table class="table table-bordered table-hover table-responsive mt-5">
+          <thead>
+            <tr>
+              <th scope="col">N° Article</th>
+              <th scope="col">Titre</th>
+              <th scope="col">Auteur</th>
+              <th scope="col">Date Publication</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          {% for article in articles %}
+          <tbody>
+            <tr>
+              <td>{{article.id}}</td>
+              <td>{{ article.title }}</td>
+              <td>{{ article.username }}</td>
+              <td>{{ article.created }}</td>
+              <td class="text-center">
+                <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{article.id}}/edit"><i class="fas fa-redo"></i> Modifier</a>            
+                <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{article.id}}/delete"><i class="fas fa-trash-alt"></i> Supprimer</a>
+              </td>      
+            </tr>
+          </tbody>
+          {% endfor %} 
+        </table>
+    </div> 
 
-      <table class="table {# table-striped #} table-bordered table-hover table-responsive mt-5">
-            
-        <thead>
-          <tr>
-            <th scope="col">N° Article</th>
-            <th scope="col">Titre</th>
-            <th scope="col">Auteur</th>
-            <th scope="col">Date Publication</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
 
-        {# Affichage des des données dans le tableau de l'administrateur #}
-        {% for article in articles %}
-        <tbody>
-          <tr>
-            <th scope="row">{{article.id}}</th>
-            <td>{{ article.title }}</td>
-            <td>{{ article.username }}</td>
-            <td>{{ article.created }}</td>
-            <td class="text-center">
-              <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{article.id}}/edit"><i class="fas fa-redo"></i> Modifier</a>            
-              <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{article.id}}/delete"><i class="fas fa-trash-alt"></i> Supprimer</a>
-            </td>      
-          </tr>
-        </tbody>
-        {% endfor %}          
+    {# Gestion des commentaires #}
 
-      </table>
+    <h3 class="mt-5 text-center">Gestion des Commentaires</h3>   
+    {# Affichage des commentaires #}
+    <div class="container mt-5 mb-5">
+      <h5 class = p-3>Commentaires : </h5>        
+        {% for comment in comments %}
+        <div class="container m-3 border border-primary">
+          <p class="card-text text-justify">Le : {{ comment.created|date("d m Y à H i s") }}</p>
+          <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{article.id}}/edit"><i class="fas fa-redo"></i> Modération 0</a>            
+          <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{article.id}}/delete"><i class="fas fa-trash-alt"></i> Modération-1</a>
+          <p class="bg-light border border-dark-subtle p-4 mt-2">{{comment['content']}}</p>
+        </div>
+        {% endfor %}
     </div>
 
 </div>
-
-{# </div> #}
 
 {% endblock %}

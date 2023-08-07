@@ -28,11 +28,13 @@ class AdminController extends Controller {
                 \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $currentUserId);
             }
         }
-        // Récupère la requête d'insertion des articles et crée un tableau associatif avec les articles et la session
+        // Affiche les articles en récupérant la requête de sélection des articles et en créant un tableau associatif [articles, session]
         $posts = \App\Models\Post::getPosts();
+        $comments = \App\Models\Post::commentModeration();
         $params = [
             'articles' => $posts,
-            'userId' => $session->get("userId")
+            'userId' => $session->get("userId"),
+            'comments' => $comments
         ];
         // Appel de la vue
         $this->render('administration.html.twig', $params);
@@ -52,17 +54,20 @@ class AdminController extends Controller {
         }
     }
 
-    // Méthode qui modifie un article
+    // Méthode pour modifier un article
     public function edit($id) {
         // Variables pour récupérer les requêtes sur les articles
         $posts = \App\Models\Post::getPosts();
         $post = \App\Models\Post::getPost($id);
 
         // tableaux associatifs qui envoient les données à la vue
-        $params['articles']=$posts;
-        $params['article']=$post;
+        $params = [
+            "articles" => $posts,
+            "article" => $post
+        ];
 
         // Appel de la vue
         $this->render('administration.html.twig', $params);
-    }
+    }    
+   
 }
