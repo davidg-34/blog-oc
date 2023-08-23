@@ -36,10 +36,15 @@ class User extends Database {
         return self::$db->lastInsertId();         
     }   
 
+    public static function getAuthors() {
+        $results = self::$db->query("SELECT * FROM users");
+        return $results->fetchAll();
+    }
+
     // Sélectionne le nom de l'utilisateur
     public static function getUser(){
         $results = self::$db->query("SELECT username FROM users");
-        return $results->fetch();
+        return $results->fetchAll();
     }
 
     

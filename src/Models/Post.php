@@ -5,17 +5,18 @@ namespace App\Models;
 class Post extends Database {
 
     //Insertion de l'article et des commentaires dans la base de données à l'aide du formulaire
-    public static function insertPost($content, $title = NULL, $id_parent = NULL, $id_user = NULL) {
-         $statement = self::$db -> prepare ('INSERT INTO posts (content, title, id_parent, id_user, created) VALUES (?, ?, ?, ?, now())') ;
+    public static function insertPost($content, $title = NULL, $id_parent = NULL, $id_user = NULL, $chapeau = NULL) {
+         $statement = self::$db -> prepare ('INSERT INTO posts (content, title, id_parent, id_user, chapeau, created) VALUES (?, ?, ?, ?, ?, now())') ;
          $statement -> execute ([
             $content,
             $title,
             $id_parent,
-            $id_user
+            $id_user,
+            $chapeau
          ]);
-         $commentId = self::$db->lastInsertId();
+         $id = self::$db->lastInsertId();
          // Retourne le dernier id saisi
-         return $commentId;
+         return $id;
     }
 
     // Selectionne les articles sur la page 'liste article'
@@ -27,19 +28,14 @@ class Post extends Database {
     //Selectionne et affiche le détail de l'article de la 'liste article'
     public static function getPostById($id) {
         if (!$id) throw new \Exception("Missing id", 500);
-        $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1");
+        $results = self::$db->query("SELECT Posts.*, users.username FROM Posts join users on posts.id_user = users.id WHERE Posts.id = " . $id . " LIMIT 1");
         $tmp = $results->fetchAll();
 
-        // Compte tous les éléments du tableau dans une condition et retourne le premier élément de $id
-        if (count($tmp)) {/* !!!!!!!!!!!!!!!!!!!!!!!!! */
-        if (count($tmp)) {
+        if (!empty($tmp)) {
             return $tmp[0];
         }
-        throw new \Exception("Missing post", 404);
-        }
-    }
-
-    
+        throw new \Exception("Missing post", 404);        
+    }    
     
     
     // GESTION DES ARTICLES DANS LE TABLEAU DE LA PAGE ADMINISTRATEUR : 
@@ -48,21 +44,23 @@ class Post extends Database {
     // Méthode qui sélectionne les articles avec l'id à l'aide du bouton 'Modifier'
     public static function getPost($id) {
         if (!$id) throw new \Exception("Missing id", 500);
-        $results = self::$db->query('SELECT * FROM Posts WHERE id = '. $id .' ');
+        $results = self::$db->query('SELECT Posts.*, users.username FROM Posts JOIN users on Posts.id_user = users.id WHERE Posts.id = '. $id . ' LIMIT 1');
         $tmp = $results->fetchAll();
         // Récupère dans la BDD la première clé du tableau sélectionné -> l'id sélectionné au clic du bouton
-        if (count($tmp)) {
+        if (!empty($tmp)) {
             return $tmp[0];
         }
         throw new \Exception("Missing post", 404);
     }
 
     // Méthode pour modifier un article
-    public static function updatePost($id, $content, $title = NULL){
-        $results = self::$db -> prepare ('UPDATE posts SET content = ?, title = ? WHERE id = ?');
+    public static function updatePost($id, $id_user, $content, $title = NULL, $chapeau = NULL){
+        $results = self::$db -> prepare ('UPDATE posts SET content = ?, title = ?, chapeau = ?, id_user = ? WHERE id = ?');
         $results -> execute ([
             $content,
             $title,
+            $chapeau,
+            $id_user,
             $id
         ]);
         return $results->fetchAll();

@@ -21,11 +21,11 @@ class AdminController extends Controller {
         $currentUserId = $session->get("userId");
         if (count($_POST)) {
             if (isset($_POST['id']) && $_POST['id'] > 0) {
-                \App\Models\Post::updatePost($_POST['id'], $_POST['content'], $_POST['title']);
-                \App\Models\Post::commentValidate($_POST['id'], $_POST['status']);
-                \App\Models\User::updateUser($_POST['id'], $_POST['username']);
+                \App\Models\Post::updatePost($_POST['id'], $_POST['id_user'], $_POST['content'], $_POST['title'], $_POST['chapeau']);
+                // \App\Models\Post::commentValidate($_POST['id'], $_POST['status']);
+                // \App\Models\User::updateUser($_POST['id'], $_POST['username']);
             } else {
-                \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $currentUserId);
+                \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $currentUserId, $_POST['chapeau']);
             }
         }
         // Affiche les données dans un tableau associatif [articles, session, utilisateur, commentaires]
@@ -49,17 +49,15 @@ class AdminController extends Controller {
         // Variables pour récupérer les requêtes sur les articles
         $posts = \App\Models\Post::getPosts();
         $post = \App\Models\Post::getPost($id);
-        $status = \App\Models\Post::commentStatus();
-        $username = \App\Models\User::getUser();       
+        $authors = \App\Models\User::getAuthors();
+        // $status = \App\Models\Post::commentStatus();
         // Stocke les variables dans un tableau associatif pour les envoyer à la vue
         $params = [
             "articles" => $posts,
             "article" => $post,
-            "status" => $status,
-            "username" => $username
-        ];
-        print_r($username);
-        // Appel de la vue
+            "authors" => $authors 
+            // "status" => $status            
+        ];        
         $this->render('administration.html.twig', $params);
     } 
 
