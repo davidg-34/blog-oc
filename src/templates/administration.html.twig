@@ -24,6 +24,18 @@
               </div>
             </div>
             <div class="mb-3 col-8">
+              <label for="title" class="form-label" class="col-4">Auteur :</label>
+              <div class="">
+                <input type="text" name="username" value="{{article.username}}" class="form-control required" id="username" placeholder="Auteur de l'article">
+              </div>
+            </div>
+            <div class="mb-3 col-8">
+              <label for="title" class="form-label" class="col-4">status :</label>
+              <div class="">
+                <input type="text" name="status" value="{{article.status}}" class="form-control required" id="status" placeholder="status">
+              </div>
+            </div>
+            <div class="mb-3 col-8">
               <label for="content" class="form-label required">Article :</label>
               <div class="">
                 <textarea name="content" class="form-control required" id="content" rows="7" cols="30" placeholder="Rédigez votre article">{{article.content}}</textarea>
@@ -54,12 +66,12 @@
           {% for article in articles %}
           <tbody>
             <tr>
-              <td>{{article.id}}</td>
+              <td>{{ article.id }}</td>
               <td>{{ article.title }}</td>
               <td>{{ article.username }}</td>
               <td>{{ article.created }}</td>
               <td class="text-center">
-                <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{article.id}}/edit"><i class="fas fa-redo"></i> Modifier</a>            
+                <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{ article.id}}/edit"><i class="fas fa-redo"></i> Modifier</a>           
                 <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{article.id}}/delete"><i class="fas fa-trash-alt"></i> Supprimer</a>
               </td>      
             </tr>
@@ -77,9 +89,16 @@
       <h5 class = p-3>Commentaires : </h5>        
         {% for comment in comments %}
         <div class="container m-3 border border-primary">
+          <p> Commentaire N° :<b> {{ loop.revindex }} </b> </p>
           <p class="card-text text-justify">Le : {{ comment.created|date("d m Y à H i s") }}</p>
-          <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{article.id}}/edit"><i class="fas fa-redo"></i> Modération 0</a>            
-          <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{article.id}}/delete"><i class="fas fa-trash-alt"></i> Modération-1</a>
+          <p class="card-text">ID : {{ comment.id }}</p>
+          <p class="card-text">statut : {{ comment.status }}</p>
+          <p class="card-text">Commentaire : 
+          {# <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{comment.id}}/editComment"><i class="fa fa-check" aria-hidden="true"></i> valider</a> #}            
+          <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{comment.id}}/edit"><i class="fa fa-check" aria-hidden="true"></i> valider</a>            
+          <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{comment.id}}/delete"><i class="fas fa-trash-alt"></i> supprimer</a>
+          <a class="btn btn-warning operation" href="/blogMvc/administration/posts/{{comment.id}}/reject"><i class="fa-solid fa-ban"></i> rejeter</a>
+          </p>
           <p class="bg-light border border-dark-subtle p-4 mt-2">{{comment['content']}}</p>
         </div>
         {% endfor %}

@@ -9,8 +9,9 @@
 
   {# Affichage de l'article sélectionné #}
   <div class="container">
-    <h5 >Titre de l'article : {{article.title}}</h5>
-    <h5>Numéro de l'article : {{article.id}}</h5>
+    <h6>Numéro de l'article : {{article.id}}</h6>
+    <h6>Titre de l'article : {{article.title}}</h6>
+    <h6>Auteur de l'article : {{article.username}}</h6>
     <p class="bg-light border border-dark-subtle p-4">{{ article.content|raw }}</p>
   </div>
 
@@ -18,7 +19,8 @@
   <div class="container mt-5 mb-5">
     <h5 class = p-3>Commentaires : </h5>        
       {% for comment in comments %}
-        {# {{ loop.revindex ~ '/'~ loop.length}} #}
+        {{ loop.revindex ~ '/'~ loop.length}}
+        <p class="card-text text-justify">ID :  {{ comment['id'] }}</p>
         <p class="card-text text-justify">Le :  {{ comment.created|date("d m Y à H i s") }}</p>
         <p class="bg-light border border-dark-subtle p-4">{{comment['content']}}</p>
       {% endfor %}

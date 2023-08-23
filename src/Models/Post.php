@@ -18,17 +18,16 @@ class Post extends Database {
          return $commentId;
     }
 
-    // Selectionne et affiche les articles sur la page 'liste article'
+    // Selectionne les articles sur la page 'liste article'
     public static function getPosts() {
         $results = self::$db->query("select posts.*, users.username, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id WHERE posts.id_parent is null ORDER BY posts.created DESC LIMIT 10");
         return $results->fetchAll();
     }
 
-    //Selectionne et affiche le détail de l'article parmi les articles de 'liste article'
+    //Selectionne et affiche le détail de l'article de la 'liste article'
     public static function getPostById($id) {
         if (!$id) throw new \Exception("Missing id", 500);
         $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1");
-       /*  $results = self::$db->query("SELECT * FROM Posts WHERE id = " . $id . " LIMIT 1"); */
         $tmp = $results->fetchAll();
 
         // Compte tous les éléments du tableau dans une condition et retourne le premier élément de $id
@@ -38,47 +37,24 @@ class Post extends Database {
         }
         throw new \Exception("Missing post", 404);
         }
-
     }
 
-
-    // GESTION DES COMMENTAIRES
-
-    // Sélectionne et récupère les commentaires validés
-    public static function getCommentByPost($id_parent) {
-        if (!$id_parent) throw new \Exception("Missing id", 500);
-        //$results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " LIMIT 20");
-        $results = self::$db->query("SELECT content FROM posts WHERE id_parent = " . $id_parent . " AND status = 1 LIMIT 20");
-        return $results->fetchAll();
-    }
-
-    // Sélectionne les commentaire pour la page admin
-    public static function commentModeration(){
-        $results = self::$db->query("SELECT content FROM posts WHERE status = '0' ");
-        return $results->fetchAll();
-    }
-
-
+    
+    
+    
     // GESTION DES ARTICLES DANS LE TABLEAU DE LA PAGE ADMINISTRATEUR : 
-
-    // Sélectionne un article à l'aide de l'id
+    // ****************************************************************
+    
+    // Méthode qui sélectionne les articles avec l'id à l'aide du bouton 'Modifier'
     public static function getPost($id) {
         if (!$id) throw new \Exception("Missing id", 500);
         $results = self::$db->query('SELECT * FROM Posts WHERE id = '. $id .' ');
         $tmp = $results->fetchAll();
-
-        // Récupère dans une condition la première clé du tableau -> l'id sélectionné
+        // Récupère dans la BDD la première clé du tableau sélectionné -> l'id sélectionné au clic du bouton
         if (count($tmp)) {
             return $tmp[0];
         }
         throw new \Exception("Missing post", 404);
-    }
-
-    // Méthode pour supprimer un article
-    public static function deletePost($id){
-        $results = self::$db -> prepare ('DELETE FROM posts WHERE id = ?');
-        $results -> execute ([$id]);
-        return $results->fetch();
     }
 
     // Méthode pour modifier un article
@@ -92,6 +68,52 @@ class Post extends Database {
         return $results->fetchAll();
     }
 
+    // Méthode pour supprimer un article
+    public static function deletePost($id){
+        $results = self::$db -> prepare ('DELETE FROM posts WHERE id = ?');
+        $results -> execute ([$id]);
+        return $results->fetch();
+    }
+
+
+
+    // GESTION DES COMMENTAIRES
+    // ************************
+
+    // Sélectionne et récupère tous les commentaires dans la page admin avec le status = 0
+    public static function commentStatus(){
+        $results = self::$db->query("SELECT content, id, status FROM posts WHERE status = '0' AND id_parent is not null ORDER BY id DESC");
+        return $results->fetchAll();
+    }
+
+    // Sélectionne et récupère les commentaires à valider pour le détail article
+    public static function getCommentByPost($id_parent) {
+        if (!$id_parent) throw new \Exception("Missing id", 500);
+        $results = self::$db->query("SELECT content, status FROM posts WHERE id_parent = " . $id_parent . " AND status = '1' ORDER BY id DESC LIMIT 20");
+        return $results->fetchAll();
+    }
+       
+    // Modifie le status du commentaire et le valide
+    public static function commentValidate($id, $status){
+        $results = self::$db -> prepare ('UPDATE posts set status = "1" WHERE id = '.$id.' ');
+        $results -> execute ();
+        return $results->fetchAll();
+    }
+    
+    // Modifie le status du commentaire et le rejette
+    public static function commentBan($id, $status){
+        $results = self::$db -> prepare ('UPDATE posts set status = "-1" WHERE id = '.$id.' ');
+        $results -> execute ();
+        return $results->fetchAll();
+    }
+    
+
+    // Méthode pour supprimer un commentaire
+    public static function deleteComment($id){
+        $results = self::$db -> prepare ('DELETE FROM posts WHERE id = ?');
+        $results -> execute ([$id]);
+        return $results->fetch();
+    }
 
 }
 

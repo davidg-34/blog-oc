@@ -21,7 +21,7 @@ class User extends Database {
         return null;
     }
 
-    // Fonction pour l'inscription de l'utilisateur
+    // Fonction pour l'inscription en BDD de l'utilisateur
     public static function create($username, $email, $password, $role) { 
         // Récupère dans la variable le mdp en mode hachage         
         $pwd = password_hash($password, PASSWORD_DEFAULT);   
@@ -35,6 +35,23 @@ class User extends Database {
         // Retourne la fonction avec le dernier enregistrement
         return self::$db->lastInsertId();         
     }   
+
+    // Sélectionne le nom de l'utilisateur
+    public static function getUser(){
+        $results = self::$db->query("SELECT username FROM users");
+        return $results->fetch();
+    }
+
+    
+    // Méthode pour modifier un utilisateur
+    public static function updateUser($id, $username = NULL){
+        $results = self::$db -> prepare ('UPDATE users SET username = ? WHERE id = ?');
+        $results -> execute ([
+            $username,
+            $id
+        ]);
+        return $results->fetch();
+    }
 
 }
 

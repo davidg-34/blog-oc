@@ -28,13 +28,13 @@
     <div class="article card  mx-2 my-2 col-xs-6 col-sm-9 col-md-9 col-lg-4 col-xl-5 border border-primary">
       <div class="card-body">
         <h4 class="card-title">{{article.title}}</h4>
-        <p class="card-text text-justify">{{ article.content|u.truncate(10, '...') }}</p>
+        <p class="card-text text-justify">{{ article.content|u.truncate(50, '...') }}</p>
 
         <p class="cart-text text-justify"><strong>Email :</strong> {{article.email}}
         <p class="cart-text text-justify"><strong>Auteur :</strong> {{article.username}}
 
         <p class="card-text text-justify"><span style="color: blue">Date publication : </span></br>{{ article.created|date("d m Y à H i s") }}</p>                
-        <a href="/blogMvc/posts/{{article.id}}" class="btn btn-secondary">Voir l'article</a>
+        <a href="/blogMvc/posts/{{article.id}}" class="btn btn-primary">Voir l'article</a>
       </div>
     </div>
 
