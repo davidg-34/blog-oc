@@ -12,7 +12,7 @@
     {# Formulaire article #}
 
     <div class="container text-center">
-        <form action="/blogMvc/administration" method="POST" class="">
+        <form id="new-post" action="/blogMvc/administration" method="POST" class="" style="display: none">
           <h3 >Rédiger un article</h3>
           <br>
           <input type="hidden" name="id" value="{{article.id}}" />
@@ -53,6 +53,7 @@
             </div>            
             <div>
               <input type="submit" class="btn btn-primary px-4 col-8" value="valider">
+              <button class="btn btn-warning px-4 col-8" onclick="document.getElementById('new-post').reset() ; document.getElementById('new-post').style.display = 'none'">Annuler</button>
             </div>        
           </div>       
         </form>        
@@ -63,31 +64,34 @@
 
     <div class="container">
       <h3 class="mt-5 text-center">Gestion des articles</h3>
-        <table class="table table-bordered table-hover table-responsive mt-5">
-          <thead>
-            <tr>
-              <th scope="col">N° Article</th>
-              <th scope="col">Titre</th>
-              <th scope="col">Auteur</th>
-              <th scope="col">Date Publication</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          {% for article in articles %}
-          <tbody>
-            <tr>
-              <td>{{ article.id }}</td>
-              <td>{{ article.title }}</td>
-              <td>{{ article.username }}</td>
-              <td>{{ article.created }}</td>
-              <td class="text-center">
-                <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{ article.id}}/edit"><i class="fas fa-redo"></i> Modifier</a>           
-                <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{article.id}}/delete"><i class="fas fa-trash-alt"></i> Supprimer</a>
-              </td>      
-            </tr>
-          </tbody>
-          {% endfor %} 
-        </table>
+      <div class="new-button-container">
+        <button class="btn btn-primary px-4 col-8" onclick="document.getElementById('new-post').style.display = 'block'">Nouvel article</button>
+      </div>
+      <table class="table table-bordered table-hover table-responsive mt-5">
+        <thead>
+          <tr>
+            <th scope="col">N° Article</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Date Publication</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        {% for article in articles %}
+        <tbody>
+          <tr>
+            <td>{{ article.id }}</td>
+            <td>{{ article.title }}</td>
+            <td>{{ article.username }}</td>
+            <td>{{ article.created }}</td>
+            <td class="text-center">
+              <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{ article.id}}/edit"><i class="fas fa-redo"></i> Modifier</a>           
+              <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{article.id}}/delete"><i class="fas fa-trash-alt"></i> Supprimer</a>
+            </td>      
+          </tr>
+        </tbody>
+        {% endfor %} 
+      </table>
     </div> 
 
 

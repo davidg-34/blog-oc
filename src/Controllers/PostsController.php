@@ -23,6 +23,13 @@ class PostsController extends Controller {
             throw new \Exception("Ce post n'existe pas", 404);
         }
        
+        $session = new \App\Session();        
+        // Condition qui empêche ou autorise la publication du commentaire si l'on n'est ou pas en session
+        if (!$session->has("userId")) {
+            $user = \App\Models\User::getUser($session->get('userId'));            
+        }
+
+
         // Initialisation des variables
         $article = \App\Models\Post::getPostById($id);
         $comments = \App\Models\Post::getCommentByPost($id);
@@ -30,7 +37,7 @@ class PostsController extends Controller {
          // Tableau associatif qui permet l'envoie les données de l'article et des commentaires à la vue
         $params = [
             "article" => $article,
-            "comments" => $comments
+            "comments" => $comments            
         ];
         //Appel de la vue avec les données du tableau en paramètre
         $this->render('post.html.twig', $params);
@@ -46,14 +53,14 @@ class PostsController extends Controller {
             $this->render('post.html.twig');
         }else{
             echo "post id : " . $id;
-            $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, 21);
+            $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, $session->get("userId"));
             header('Location: /blogMvc/posts/' . $id);
         }
     }
 
     // Méthode qui insère les articles
     public function post($id){
-        $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, 21);
+        $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $session->get("userId"));
     }
 
 }
