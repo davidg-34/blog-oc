@@ -6,7 +6,7 @@ class Post extends Database {
 
     //Insertion de l'article et des commentaires dans la base de données à l'aide du formulaire
     public static function insertPost($content, $title = NULL, $id_parent = NULL, $id_user = NULL, $chapeau = NULL) {
-         $statement = self::$db -> prepare ('INSERT INTO posts (content, title, id_parent, id_user, chapeau, created) VALUES (?, ?, ?, ?, ?, now())') ;
+         $statement = self::$db -> prepare ('INSERT INTO posts (content, title, id_parent, id_user, chapeau, status, created) VALUES (?, ?, ?, ?, ?, "0", now())') ;
          $statement -> execute ([
             $content,
             $title,
