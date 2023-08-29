@@ -78,21 +78,21 @@ class Post extends Database {
     // GESTION DES COMMENTAIRES
     // ************************
 
-    // Sélectionne et récupère tous les commentaires dans la page admin avec le status = 0
-    public static function commentStatus(){
-        $results = self::$db->query("SELECT content, id, status FROM posts WHERE status = '0' AND id_parent is not null ORDER BY id DESC");
-        return $results->fetchAll();
-    }
-
-    // Sélectionne et récupère les commentaires à valider pour le détail article
+    // Sélectionne et récupère les commentaires validés pour le détail article de la liste articles
     public static function getCommentByPost($id_parent) {
         if (!$id_parent) throw new \Exception("Missing id", 500);
         $results = self::$db->query("SELECT content, status FROM posts WHERE id_parent = " . $id_parent . " AND status = '1' ORDER BY id DESC LIMIT 20");
         return $results->fetchAll();
     }
+
+    // Sélectionne et récupère tous les commentaires dans la page admin avec le status = 0
+    public static function commentStatusDefault(){
+        $results = self::$db->query("SELECT content, id, status FROM posts WHERE status = '0' AND id_parent is not null ORDER BY id DESC");
+        return $results->fetchAll();
+    }
        
     // Modifie le status du commentaire et le valide
-    public static function commentValidate($id, $status){
+    public static function commentAllowed($id, $status){
         $results = self::$db -> prepare ('UPDATE posts set status = "1" WHERE id = '.$id.' ');
         $results -> execute ();
         return $results->fetchAll();
@@ -103,8 +103,7 @@ class Post extends Database {
         $results = self::$db -> prepare ('UPDATE posts set status = "-1" WHERE id = '.$id.' ');
         $results -> execute ();
         return $results->fetchAll();
-    }
-    
+    }    
 
     // Méthode pour supprimer un commentaire
     public static function deleteComment($id){

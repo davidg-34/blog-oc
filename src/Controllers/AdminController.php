@@ -28,9 +28,10 @@ class AdminController extends Controller {
                 \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $currentUserId, $_POST['chapeau']);
             }
         }
+        
         // Affiche les données dans un tableau associatif [articles, session, utilisateur, commentaires]
         $posts = \App\Models\Post::getPosts();
-        $comments = \App\Models\Post::commentStatus();
+        $comments = \App\Models\Post::commentStatusDefault();
         $username = \App\Models\User::getUser();
         $params = [
             'articles' => $posts,
@@ -60,7 +61,21 @@ class AdminController extends Controller {
         ];        
         $this->render('administration.html.twig', $params);
     } 
+   
+    // Méthode pour valider un commentaire dans la session
+    public function validate($id) {
+        $session = new \App\Session();
+        
+        if ($session->has('userId')){
+            \App\Models\Post::commentAllowed($id, $status);
+            header("Location: /blogMvc/administration");
+        } else {
+            header("Location: /blogMvc/");
+            throw new \Exception("Vous devez être connecté");
+        }
+    }
 
+    // Méthode pour rejeter un commentaire dans la session
     public function reject($id) {
         $session = new \App\Session();
         
@@ -72,6 +87,7 @@ class AdminController extends Controller {
             throw new \Exception("Vous devez être connecté");
         }
     }
+    
 
     // Méthode qui supprime un article dans la session
     public function delete($id) {

@@ -45,8 +45,12 @@ $router->post('/blogMvc/administration', 'Admin#index');
 // Routes mise à jour et suppression d'un article dans le tableau de bord
 $router->post('/blogMvc/administration/posts/:id/edit', 'Admin#index');
 $router->get('/blogMvc/administration/posts/:id/edit', 'Admin#edit');
-$router->get('/blogMvc/administration/posts/:id/delete', 'Admin#delete');
+
+// Routes mise à jour des commentaires dans le tableau de bord
+$router->get('/blogMvc/administration/posts/:id/validate', 'Admin#validate');
 $router->get('/blogMvc/administration/posts/:id/reject', 'Admin#reject');
+
+$router->get('/blogMvc/administration/posts/:id/delete', 'Admin#delete');
 
 
 

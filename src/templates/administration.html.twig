@@ -42,7 +42,7 @@
             <div class="mb-3 col-8">
               <label for="content" class="form-label required">Chapeau :</label>
               <div class="">
-                <textarea name="chapeau" class="form-control required" id="chapeau" rows="2" cols="30" placeholder="Saisissez le chapeay de l'article">{{article.chapeau}}</textarea>
+                <textarea name="chapeau" class="form-control required" id="chapeau" rows="2" cols="30" placeholder="Rédigez le chapeau de l'article">{{article.chapeau}}</textarea>
               </div>
             </div>            
             <div class="mb-3 col-8">
@@ -101,11 +101,8 @@
         <div class="container m-3 border border-primary">
           <p> Commentaire N° :<b> {{ loop.revindex }} </b> </p>
           <p class="card-text text-justify">Le : {{ comment.created|date("d m Y à H i s") }}</p>
-          <p class="card-text">ID : {{ comment.id }}</p>
-          <p class="card-text">statut : {{ comment.status }}</p>
-          <p class="card-text">Commentaire : 
-          {# <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{comment.id}}/editComment"><i class="fa fa-check" aria-hidden="true"></i> valider</a> #}            
-          <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{comment.id}}/edit"><i class="fa fa-check" aria-hidden="true"></i> valider</a>            
+          <p class="card-text">Commentaire :             
+          <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{comment.id}}/validate"><i class="fa fa-check" aria-hidden="true"></i> valider</a>            
           <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{comment.id}}/delete"><i class="fas fa-trash-alt"></i> supprimer</a>
           <a class="btn btn-warning operation" href="/blogMvc/administration/posts/{{comment.id}}/reject"><i class="fa-solid fa-ban"></i> rejeter</a>
           </p>

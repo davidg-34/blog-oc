@@ -12,6 +12,7 @@
     <h6>Numéro de l'article : {{article.id}}</h6>
     <h6>Titre de l'article : {{article.title}}</h6>
     <h6>Auteur de l'article : {{article.username}}</h6>
+    <p class="bg-light border rounded-pill text-center p-2 mt-4">{{ article.chapeau|raw }}</p>
     <p class="bg-light border border-dark-subtle p-4">{{ article.content|raw }}</p>
   </div>
 
