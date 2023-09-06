@@ -50,9 +50,6 @@ $router->get('/blogMvc/administration/posts/:id/edit', 'Admin#edit');
 $router->get('/blogMvc/administration/posts/:id/validate', 'Admin#validate');
 $router->get('/blogMvc/administration/posts/:id/reject', 'Admin#reject');
 
-$router->get('/blogMvc/administration/posts/:id/delete', 'Admin#delete');
-
-
 
 // Routes messagerie contact
 $router->get('/blogMvc/contact', 'Contact#index');

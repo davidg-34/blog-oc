@@ -23,12 +23,6 @@
                 <input type="text" name="title" value="{{article.title}}" class="form-control required" id="title" placeholder="Titre de l'article">
               </div>
             </div>
-            <!--<div class="mb-3 col-8">
-              <label for="title" class="form-label" class="col-4">Auteur :</label>
-              <div class="">
-                <input type="text" name="username" value="{{article.username}}" class="form-control required" id="username" placeholder="Auteur de l'article">
-              </div>
-            </div>-->
             <div class="mb-3 col-8">
               <label for="title" class="form-label" class="col-4">Auteur :</label>
               <div class="">
@@ -52,21 +46,21 @@
               </div>
             </div>            
             <div>
-              <input type="submit" class="btn btn-primary px-4 col-8" value="valider">
-              <button class="btn btn-warning px-4 col-8" onclick="document.getElementById('new-post').reset() ; document.getElementById('new-post').style.display = 'none'">Annuler</button>
+              <input type="submit" class="btn btn-primary m-2 col-8" value="valider">
+              <button class="btn btn-warning m-2 col-8" onclick="document.getElementById('new-post').reset() ; document.getElementById('new-post').style.display = 'none'">Annuler</button>
             </div>        
           </div>       
         </form>        
     </div>
 
+      <div class="new-button-container text-center">
+        <button class="btn btn-success mt-4 col-6" onclick="document.getElementById('new-post').style.display = 'block'"><i class="fas fa-pen"></i> Rédiger un article</button>
+      </div>
 
     {# Gestion des articles #}
 
     <div class="container">
       <h3 class="mt-5 text-center">Gestion des articles</h3>
-      <div class="new-button-container">
-        <button class="btn btn-primary px-4 col-8" onclick="document.getElementById('new-post').style.display = 'block'">Nouvel article</button>
-      </div>
       <table class="table table-bordered table-hover table-responsive mt-5">
         <thead>
           <tr>
@@ -85,7 +79,7 @@
             <td>{{ article.username }}</td>
             <td>{{ article.created }}</td>
             <td class="text-center">
-              <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{ article.id}}/edit"><i class="fas fa-redo"></i> Modifier</a>           
+              <a class="btn btn-info operation" {# onclick="document.getElementById('new-post').style.display = 'block'" #} href="/blogMvc/administration/posts/{{ article.id}}/edit"><i class="fas fa-redo"></i> Modifier</a>
               <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{article.id}}/delete"><i class="fas fa-trash-alt"></i> Supprimer</a>
             </td>      
           </tr>
@@ -106,8 +100,7 @@
           <p> Commentaire N° :<b> {{ loop.revindex }} </b> </p>
           <p class="card-text text-justify">Le : {{ comment.created|date("d m Y à H i s") }}</p>
           <p class="card-text">Commentaire :             
-          <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{comment.id}}/validate"><i class="fa fa-check" aria-hidden="true"></i> valider</a>            
-          <a class="btn btn-danger operation" href="/blogMvc/administration/posts/{{comment.id}}/delete"><i class="fas fa-trash-alt"></i> supprimer</a>
+          <a class="btn btn-info operation" href="/blogMvc/administration/posts/{{comment.id}}/validate"><i class="fa fa-check" aria-hidden="true"></i> valider</a>
           <a class="btn btn-warning operation" href="/blogMvc/administration/posts/{{comment.id}}/reject"><i class="fa-solid fa-ban"></i> rejeter</a>
           </p>
           <p class="bg-light border border-dark-subtle p-4 mt-2">{{comment['content']}}</p>

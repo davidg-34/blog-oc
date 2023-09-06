@@ -28,6 +28,7 @@
     <div class="article card  mx-2 my-2 col-xs-6 col-sm-9 col-md-9 col-lg-4 col-xl-5 border border-primary">
       <div class="card-body">
         <h4 class="card-title">{{article.title}}</h4>
+        <h6 class="card-title">Numéro Article : {{article.id}}</h6>
         <p class="card-text text-justify">{{ article.chapeau|u.truncate(50, '...') }}</p>
 
         <p class="cart-text text-justify"><strong>Email :</strong> {{article.email}}

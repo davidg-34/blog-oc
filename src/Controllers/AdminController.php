@@ -27,8 +27,7 @@ class AdminController extends Controller {
             } else {
                 \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $currentUserId, $_POST['chapeau']);
             }
-        }
-        
+        }        
         // Affiche les données dans un tableau associatif [articles, session, utilisateur, commentaires]
         $posts = \App\Models\Post::getPosts();
         $comments = \App\Models\Post::commentStatusDefault();
@@ -39,7 +38,6 @@ class AdminController extends Controller {
             'comments' => $comments,
             'username' => $username
         ];
-        //print_r($username);
         // Appel de la vue avec les données en second paramètre
         $this->render('administration.html.twig', $params);
 
@@ -51,13 +49,12 @@ class AdminController extends Controller {
         $posts = \App\Models\Post::getPosts();
         $post = \App\Models\Post::getPost($id);
         $authors = \App\Models\User::getAuthors();
-        // $status = \App\Models\Post::commentStatus();
+
         // Stocke les variables dans un tableau associatif pour les envoyer à la vue
         $params = [
             "articles" => $posts,
             "article" => $post,
-            "authors" => $authors 
-            // "status" => $status            
+            "authors" => $authors         
         ];        
         $this->render('administration.html.twig', $params);
     } 
@@ -81,21 +78,6 @@ class AdminController extends Controller {
         
         if ($session->has('userId')){
             \App\Models\Post::commentBan($id, $status);
-            header("Location: /blogMvc/administration");
-        } else {
-            header("Location: /blogMvc/");
-            throw new \Exception("Vous devez être connecté");
-        }
-    }
-    
-
-    // Méthode qui supprime un article dans la session
-    public function delete($id) {
-        $session = new \App\Session();
-
-        if ($session->has("userId")) {
-            \App\Models\Post::deletePost($id);
-            \App\Models\Post::deleteComment($id);
             header("Location: /blogMvc/administration");
         } else {
             header("Location: /blogMvc/");

@@ -105,13 +105,7 @@ class Post extends Database {
         return $results->fetchAll();
     }    
 
-    // Méthode pour supprimer un commentaire
-    public static function deleteComment($id){
-        $results = self::$db -> prepare ('DELETE FROM posts WHERE id = ?');
-        $results -> execute ([$id]);
-        return $results->fetch();
-    }
-
+    
 }
 
 

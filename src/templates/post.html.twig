@@ -32,7 +32,7 @@
   {% if userId %}
     {{ include('_comment.html.twig', { 'paramName': 'paramValue' }) }}
   {% else %}
-    <strong>VOUS DEVEZ ETRE CONNECTE POUR AJOUTER UN COMMENTAIRE.</strong>
+    <p class="p-3 mb-2 bg-warning text-center fw-bold">VOUS DEVEZ ETRE CONNECTE POUR AJOUTER UN COMMENTAIRE !</p>
   {% endif %}
 
 </div>

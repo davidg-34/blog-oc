@@ -24,7 +24,7 @@ class PostsController extends Controller {
         }
        
         $session = new \App\Session();        
-        // Condition qui empêche ou autorise la publication du commentaire si l'on n'est ou pas en session
+        // Condition qui empêche ou autorise la publication du commentaire si l'on est ou pas en session
         if (!$session->has("userId")) {
             $user = \App\Models\User::getUser($session->get('userId'));            
         }
