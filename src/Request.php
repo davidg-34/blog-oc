@@ -18,6 +18,10 @@ class Request
         $this->params = count($safePost) ? $safePost : $safeGet; 
     }
     
+    public function hasParams() {
+        return !empty($this->params);
+    }
+
     public function hasParam($key) {
         return isset($this->params[$key]);
     }

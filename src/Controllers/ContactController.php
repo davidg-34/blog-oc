@@ -14,12 +14,11 @@ require 'vendor/autoload.php';
 
 class ContactController extends Controller{
     public function index(){
-        if (count($_POST)) {
-            $request = new \App\Request();
-            $firstname = $request->getParam("firstname");
-            $lastname = $request->getParam("lastname");
-            $email = $request->getParam("email");
-            $message =  $request->getParam("message");
+        if ($this->request->hasParams()) {
+            $firstname = $this->request->getParam("firstname");
+            $lastname = $this->request->getParam("lastname");
+            $email = $this->request->getParam("email");
+            $message =  $this->request->getParam("message");
             // TO DO gestion d'erreur
             if  (false) {
                 return "error";
