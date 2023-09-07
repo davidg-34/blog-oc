@@ -85,5 +85,18 @@ class AdminController extends Controller {
         }
     }
 
+    // Méthode qui supprime un article dans la session
+    public function delete($id) {
+        $session = new \App\Session();
+
+        if ($session->has("userId")) {
+            \App\Models\Post::deletePost($id);;
+            header("Location: /blogMvc/administration");
+        } else {
+            header("Location: /blogMvc/");
+            throw new \Exception("Vous devez être connecté");
+        }
+    }
+
          
 }

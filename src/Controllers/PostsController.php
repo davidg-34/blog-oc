@@ -28,12 +28,9 @@ class PostsController extends Controller {
         if (!$session->has("userId")) {
             $user = \App\Models\User::getUser($session->get('userId'));            
         }
-
-
         // Initialisation des variables
         $article = \App\Models\Post::getPostById($id);
-        $comments = \App\Models\Post::getCommentByPost($id);
-        
+        $comments = \App\Models\Post::getCommentByPost($id);        
          // Tableau associatif qui permet l'envoie les données de l'article et des commentaires à la vue
         $params = [
             "article" => $article,
