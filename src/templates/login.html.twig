@@ -5,35 +5,34 @@
 
 {% block content %}
 
-<div class="container text-center p-5 mb-2 my-5 {# bg-secondary text-white #}">
+<div class = "container text-center p-5 mb-2 my-5">
     
   <h1 >{{title}}</h1>
 
-  <div class="container">
-        <div class={# "justify-content-center " #}>
+  <div class = "container">
+        <div class = >
             <h1>CONNEXION :</h1>
         </div>
   </div>
 
-  {# <div class="row align-items-center col-8 my5"> #}
-  <div class="row justify-content-center">
-    <div class="row col-8 my-5">
+  <div class = "row justify-content-center">
+    <div class = "row col-8 my-5">
       
-      <form method="POST" action="/blogMvc/login" class="my-5">
-      <input type="hidden" id="role" name="role" value="admin">
-        <div class="form-group">
-          <label for="email" class="form-label required">Email</label>
-          <input type="email" class="form-control" id="email" name="email" required="required" placeholder="Entrez votre email">
+      <form method = "POST" action = "/blogMvc/login" class = "my-5">
+      <input type = "hidden" id = "role" name = "role" value = "admin">
+        <div class = "form-group">
+          <label for = "email" class = "form-label required">Email</label>
+          <input type = "email" class = "form-control" id = "email" name = "email" required = "required" placeholder = "Entrez votre email">
         </div>
          
-        <div class="col-12 mt-4">
-          <label for="password" class="form-label required">Mot de passe</label>
-          <input type="password" class="form-control" id="password" name="password" required="required" minlength="6" placeholder="Entrez votre mot de passe">
+        <div class = "col-12 mt-4">
+          <label for = "password" class = "form-label required">Mot de passe</label>
+          <input type = "password" class="form-control" id="password" name="password" required="required" minlength="6" placeholder="Entrez votre mot de passe">
         </div>
          
-        <div class="col-12 mt-4">
-          <button type="submit" class="btn btn-primary w-30">Se connecter</button>
-          <input type="hidden" name="_csrf_token" value="766734c6982b31.TfdyhHspQlCagMQ47RCGPdkjfcKYHGK289FHoPEOtIw.O4IItjZvHQnI9fIMrCLkTLFQPIn1ajeCxJ4glsNl1us_nwvMFU16CfzkjQ">
+        <div class = "col-12 mt-4">
+          <button type = "submit" class = "btn btn-primary w-30">Se connecter</button>
+          <input type = "hidden" name = "_csrf_token" value = "766734c6982b31.TfdyhHspQlCagMQ47RCGPdkjfcKYHGK289FHoPEOtIw.O4IItjZvHQnI9fIMrCLkTLFQPIn1ajeCxJ4glsNl1us_nwvMFU16CfzkjQ">
         </div>
       </form>
 

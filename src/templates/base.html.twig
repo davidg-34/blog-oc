@@ -16,59 +16,59 @@
 
     <body>
     {# Barre de navigation #}
-    <nav class="navbar navbar-expand-md bg-body-secondary border-bottom border-primary">
-      <div class="container-fluid">
-        <a class="navbar-brand fw-bold text-primary" href="{{ ('/blogMvc/') }}">BLOG</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+    <nav class = "navbar navbar-expand-md bg-body-secondary border-bottom border-primary">
+      <div class = "container-fluid">
+        <a class = "navbar-brand fw-bold text-primary" href = "{{ ('/blogMvc/') }}">BLOG</a>
+        <button class = "navbar-toggler" type = "button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class = "navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link " href="{{ ('/blogMvc/blog') }}">Articles </a>
+        <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+          <ul class = "navbar-nav me-auto mb-2 mb-lg-0">
+            <li class = "nav-item">
+              <a class = "nav-link " href = "{{ ('/blogMvc/blog') }}">Articles </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link " href="{{ ('/blogMvc/contact') }}">Contact </a>
+            <li class = "nav-item">
+              <a class = "nav-link " href = "{{ ('/blogMvc/contact') }}">Contact </a>
             </li>  
               {% if userId %}
-              <span class="p-2  text-primary">Bonjour <b>{{ userName }}</b>, vous êtes connecté(e) !</span>
+               <span class = "p-2  text-primary">Bonjour <b>{{ userName }}</b>, vous êtes connecté(e) !</span>
               {% endif %}
           </ul>
               {% if not userId %}
-                <a class="nav-link m-2" href="{{ ('/blogMvc/register') }}">
-                  <button class="btn btn-outline-primary" type="submit"><i class="fas fa-user-edit"></i> Inscription</button>
+                <a class = "nav-link m-2" href = "{{ ('/blogMvc/register') }}">
+                  <button class = "btn btn-outline-primary" type="submit"><i class = "fas fa-user-edit"></i> Inscription</button>
                 </a>
-                <a class="nav-link m-2" href="{{ ('/blogMvc/login') }}">
-                  <button class="btn btn-outline-primary" type="submit"><i class="fas fa-sign-in"></i> Connexion</button>
+                <a class = "nav-link m-2" href = "{{ ('/blogMvc/login') }}">
+                  <button class = "btn btn-outline-primary" type="submit"><i class = "fas fa-sign-in"></i> Connexion</button>
                 </a>
               {% else %}
-                <a href="{{ ('/blogMvc/logout') }}" <button type="button" class="btn btn-outline-primary"><i class="fa fa-sign-out" aria-hidden="true"></i> Deconnexion</button></a>
+                <a href = "{{ ('/blogMvc/logout') }}" <button type="button" class = "btn btn-outline-primary"><i class="fa fa-sign-out" aria-hidden="true"></i> Deconnexion</button></a>
               {% endif %}
         </div>
       </div>
     </nav>
 
-    <div class="container -md mt-3">
+    <div class = "container -md mt-3">
       {% block content %}
 
       {% endblock %}
     </div>
 
-    <footer class="">
-      <nav class="navbar navbar-expand-sm bg-body-secondary border-top border-primary">
-        <div class="navbar-collapse justify-content-center" id="navbarsExampleDefault">
-          <ul class="navbar-nav fw-bold me-auto-md text-center">
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ ('/blogMvc/administration') }}"><i class="fas fa-tachometer-alt"></i> Administration </a>
+    <footer class = "">
+      <nav class = "navbar navbar-expand-sm bg-body-secondary border-top border-primary">
+        <div class = "navbar-collapse justify-content-center" id = "navbarsExampleDefault">
+          <ul class = "navbar-nav fw-bold me-auto-md text-center">
+              <li class = "nav-item">
+                  <a class = "nav-link" href = "{{ ('/blogMvc/administration') }}"><i class = "fas fa-tachometer-alt"></i> Administration </a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fab fa-twitter"></i> Twiter </a>
+              <li class = "nav-item">
+                  <a class = "nav-link" href = "#"><i class = "fab fa-twitter"></i> Twiter </a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fab fa-linkedin"></i></i> Linkedin </a>
+              <li class = "nav-item">
+                  <a class = "nav-link" href = "#"><i class = "fab fa-linkedin"></i></i> Linkedin </a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fab fa-github fa-lg"></i> Github </a>
+              <li class = "nav-item">
+                  <a class = "nav-link" href = "#"><i class = "fab fa-github fa-lg"></i> Github </a>
               </li>
           </ul>
         </div>

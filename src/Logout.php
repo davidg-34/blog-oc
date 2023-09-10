@@ -2,8 +2,7 @@
 
 namespace App;
 
-class Logout 
-{
+class Logout {
     Public function index(){
 
             if ($session->has("userId")) {  // Si l'utilisateur est déjà inscrit

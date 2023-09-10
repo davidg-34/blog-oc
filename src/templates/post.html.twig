@@ -8,22 +8,22 @@
 <div class="container p-3 mb-5">
 
   {# Affichage de l'article sélectionné #}
-  <div class="container">
+  <div class = "container">
     <h6>Numéro de l'article : {{article.id}}</h6>
     <h6>Titre de l'article : {{article.title}}</h6>
     <h6>Auteur de l'article : {{article.username}}</h6>
-    <p class="bg-light border rounded-pill text-center p-2 mt-4">{{ article.chapeau|raw }}</p>
-    <p class="bg-light border border-dark-subtle p-4">{{ article.content|raw }}</p>
+    <p class = "bg-light border rounded-pill text-center p-2 mt-4">{{ article.chapeau|raw }}</p>
+    <p class = "bg-light border border-dark-subtle p-4">{{ article.content|raw }}</p>
   </div>
 
   {# Affichage des commentaires #}
-  <div class="container mt-5 mb-5">
+  <div class = "container mt-5 mb-5">
     <h5 class = p-3>Commentaires : </h5>        
       {% for comment in comments %}
         {{ loop.revindex ~ '/'~ loop.length}}
-        <p class="card-text text-justify">ID :  {{ comment['id'] }}</p>
-        <p class="card-text text-justify">Le :  {{ comment.created|date("d m Y à H i s") }}</p>
-        <p class="bg-light border border-dark-subtle p-4">{{comment['content']}}</p>
+        <p class = "card-text text-justify">ID :  {{ comment['id'] }}</p>
+        <p class = "card-text text-justify">Le :  {{ comment.created|date("d m Y à H i s") }}</p>
+        <p class = "bg-light border border-dark-subtle p-4">{{comment['content']}}</p>
       {% endfor %}
   </div>
 
@@ -32,14 +32,13 @@
   {% if userId %}
     {{ include('_comment.html.twig', { 'paramName': 'paramValue' }) }}
   {% else %}
-    <p class="p-3 mb-2 bg-warning text-center fw-bold">VOUS DEVEZ ETRE CONNECTE POUR AJOUTER UN COMMENTAIRE !</p>
+    <p class = "p-3 mb-2 bg-warning text-center fw-bold">VOUS DEVEZ ETRE CONNECTE POUR AJOUTER UN COMMENTAIRE !</p>
   {% endif %}
 
 </div>
 
 {# </div> #}
 {% endblock %}
-
 
 {% block javascript %}
 <script></script>

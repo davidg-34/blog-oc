@@ -4,13 +4,11 @@ namespace App;
 
 // gère les requêtes des formulaires via les variables globales GET et POST 
 
-class Request 
-{
+class Request {
     private ?array $params = [];
     
     // Méthode qui récupère et filtre les valeurs des variables GET et POST en sortie de formulaire
-    public function __construct()
-    {        
+    public function __construct() {        
         $safeGet = filter_input_array(INPUT_GET);        
         if (!is_array($safeGet)) $safeGet = [];
         $safePost = filter_input_array(INPUT_POST);
