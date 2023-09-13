@@ -17,7 +17,8 @@ class RegisterController extends Controller {
             
             // Récupère la requête create dans la variable $user
             $user = \App\Models\User::create($username, $email, $password, $role);
-            header("Location: /blogMvc/login");  
+            //header("Location: /blogMvc/login");
+            $this->render('login.html.twig');  
         } else {
             $this->render('register.html.twig', ['error' => "email ou mot de passe incorrect"]); 
         }                            

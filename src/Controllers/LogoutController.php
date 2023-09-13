@@ -9,8 +9,7 @@ class LogoutController extends Controller {
         $session = new \App\Session();        
 
         if ($session->has("userId")) {
-            //session_unset();
-            unset($_SESSION[$key]);
+            session_unset();
             session_destroy();            
         } 
         header('Location: /blogMvc/');

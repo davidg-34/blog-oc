@@ -22,8 +22,6 @@ class AdminController extends Controller {
         if (count($_POST)) {
             if (isset($_POST['id']) && $_POST['id'] > 0) {
                 \App\Models\Post::updatePost($_POST['id'], $_POST['id_user'], $_POST['content'], $_POST['title'], $_POST['chapeau']);
-                // \App\Models\Post::commentValidate($_POST['id'], $_POST['status']);
-                // \App\Models\User::updateUser($_POST['id'], $_POST['username']);
             } else {
                 \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $currentUserId, $_POST['chapeau']);
             }

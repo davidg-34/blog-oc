@@ -55,7 +55,10 @@ class PostsController extends Controller {
 
     // Méthode qui insère les articles
     public function post($id){
-        $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $session->get("userId"));
+        if (isset($_POST['content'])) {
+            $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $session->get("userId"));
+        }
+        //$articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $session->get("userId"));
     }
 
 }

@@ -55,7 +55,6 @@ class ContactController extends Controller{
 
             $mail->send();
             // echo 'Message has been sent';
-            //print_r("Message has beeb set");
         } catch (Exception $e) {
             //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             print_r("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
