@@ -9,6 +9,7 @@ class LogoutController extends Controller {
         $session = new \App\Session();        
 
         if ($session->has("userId")) {
+            // unset($_SESSION[$key]);
             session_unset();
             session_destroy();            
         } 

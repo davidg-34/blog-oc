@@ -47,7 +47,7 @@ class PostsController extends Controller {
         if (!$session->has("userId")) {
             $this->render('post.html.twig');
         }else{
-            //echo "post id : " . $id;
+            // echo "post id : " . $id;
             $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, $session->get("userId"));
             header('Location: /blogMvc/posts/' . $id);
         }

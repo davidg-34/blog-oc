@@ -22,8 +22,8 @@ class Controller {
         $session = new \App\Session();
         $params["userId"] = $session->get("userId");
         $params["userName"] = $session->get("userName");
-        //echo $this->twig->render($template, $params);
-        print_r($this->twig->render($template, $params)); 
+        // echo $this->twig->render($template, $params);
+        print_r($this->twig->render($template, $params));
     }
 
 }

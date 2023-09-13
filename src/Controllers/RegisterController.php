@@ -13,14 +13,13 @@ class RegisterController extends Controller {
             $username = $request->getParam("username");
             $email = $request->getParam("email");
             $password =  $request->getParam("password");
-            $role = $request->getParam("role");
-            
+            $role = $request->getParam("role");            
             // Récupère la requête create dans la variable $user
             $user = \App\Models\User::create($username, $email, $password, $role);
             //header("Location: /blogMvc/login");
             $this->render('login.html.twig');  
         } else {
-            $this->render('register.html.twig', ['error' => "email ou mot de passe incorrect"]); 
+            $this->render('register.html.twig', ['error' => "email ou mot de passe incorrect"]);
         }                            
     }
 }
