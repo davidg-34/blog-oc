@@ -45,11 +45,9 @@ class PostsController extends Controller {
         $session = new \App\Session();        
         // Condition qui empêche ou autorise la publication du commentaire si l'on n'est ou pas en session
         if (!$session->has("userId")) {
-            echo '<h4> vous devez être connecté pour ajouter un commentaire.</h4>';
-            //throw new \Exception("Vous devez être connecté pour ajouter un commentaire.");
             $this->render('post.html.twig');
         }else{
-            echo "post id : " . $id;
+            //echo "post id : " . $id;
             $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, $session->get("userId"));
             header('Location: /blogMvc/posts/' . $id);
         }

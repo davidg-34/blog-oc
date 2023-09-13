@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 \App\Models\Database::initDatabase();
 
@@ -13,7 +13,6 @@ $router->get('/blogMvc/blog', 'Posts#index');
 // $router->post('/blogMvc/homepage', 'Homepage#index');
 
 // Routes des articles
-$router->get('/blogMvc/posts', function(){ echo "<h3>LISTE DES ARTICLES :</h3>"; });
 $router->get('/blogMvc/posts/:id', 'Posts#show');
 $router->post('/blogMvc/posts', 'Posts#post');
 
