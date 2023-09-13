@@ -6,8 +6,9 @@ class RegisterController extends Controller {
     
     // Enregistrement d'un utilisateur
     public function index() { 
+        $request = new \App\Request();
         // Au moment de la validation du formulaire, enregistrement des données user dans la BDD            
-        if (count($_POST)) { 
+        if ($request->hasParams()) { 
             // Récupère la classe Request et initialise les 3 clés du tableau params de la méthode getParam
             $request = new \App\Request();
             $username = $request->getParam("username");

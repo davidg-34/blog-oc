@@ -3,7 +3,9 @@ require_once 'vendor/autoload.php';
 
 \App\Models\Database::initDatabase();
 
-$router = new App\Router\Router($_SERVER['REQUEST_URI']);
+
+$request = new App\Request();
+$router = new App\Router\Router($request->getServerProp('REQUEST_URI'));
 
 
 // Route accueil du site

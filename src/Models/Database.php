@@ -7,7 +7,7 @@
      protected static $db;
 
      public static function initDatabase() {
-        require "./.env.php";
+         include_once "./.env.php";
          if (self::$db != null) {
             return;
          }

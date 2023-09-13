@@ -17,13 +17,12 @@ class AdminController extends Controller {
         }
         // Vérifie que les données ont bien été envoyées/ lit le nombre de soumissions de messages
         // Si l'id (en cliquant sur modifier) est supérieur à 0 on modifie sinon on saisi un nouvel article
-        // Retourne le nombre d'éléments dans le tableau associatif $_POST
         $currentUserId = $session->get("userId");
-        if (count($_POST)) {
-            if (isset($_POST['id']) && $_POST['id'] > 0) {
-                \App\Models\Post::updatePost($_POST['id'], $_POST['id_user'], $_POST['content'], $_POST['title'], $_POST['chapeau']);
+        if ($this->request->hasParams()) {
+            if ($this->request->getParam('id') > 0) {
+                \App\Models\Post::updatePost($this->request->getParam('id'), $this->request->getParam('id_user'), $this->request->getParam('content'), $this->request->getParam('title'), $this->request->getParam('chapeau'));
             } else {
-                \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $currentUserId, $_POST['chapeau']);
+                \App\Models\Post::insertPost($this->request->getParam('content'), $this->request->getParam('title'), null, $currentUserId, $this->request->getParam('chapeau'));
             }
         }        
         // Affiche les données dans un tableau associatif [articles, session, utilisateur, commentaires]

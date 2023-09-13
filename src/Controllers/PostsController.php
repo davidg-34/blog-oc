@@ -7,11 +7,10 @@ class PostsController extends Controller {
     // Méthode qui récupère la liste des articles et la session de l'utilisateur
     public function index() {
         $posts = \App\Models\Post::getPosts();
-        $session = new \App\Session();
         // La variable $params récupère les données dans un tableau associatif
         $params = [
             'articles' => $posts,
-            'userId' => $session->get("userId")
+            'userId' => $this->session->get("userId")
         ];
         // Appel de la vue avec les articles récupérés
         $this->render('home.html.twig', $params);
@@ -21,12 +20,10 @@ class PostsController extends Controller {
     public function show($id) {
         if (!$id) {
             throw new \Exception("Ce post n'existe pas", 404);
-        }
-       
-        $session = new \App\Session();        
+        }        
         // Condition qui empêche ou autorise la publication du commentaire si l'on est ou pas en session
-        if (!$session->has("userId")) {
-            $user = \App\Models\User::getUser($session->get('userId'));            
+        if (!$this->session->has("userId")) {
+            $user = \App\Models\User::getUser($this->session->get('userId'));            
         }
         // Initialisation des variables
         $article = \App\Models\Post::getPostById($id);
@@ -42,23 +39,22 @@ class PostsController extends Controller {
 
     // Méthode qui insère les commentaires de l'article     
     public function comment($id) {
-        $session = new \App\Session();        
         // Condition qui empêche ou autorise la publication du commentaire si l'on n'est ou pas en session
-        if (!$session->has("userId")) {
+        if (!$this->session->has("userId")) {
             $this->render('post.html.twig');
         }else{
             // echo "post id : " . $id;
-            $commentId = \App\Models\Post::insertPost($_POST['comment'], null, $id, $session->get("userId"));
+            $commentId = \App\Models\Post::insertPost($this->request->getParam('comment'), null, $id, $this->session->get("userId"));
             header('Location: /blogMvc/posts/' . $id);
         }
     }
 
     // Méthode qui insère les articles
     public function post($id){
-        if (isset($_POST['content'])) {
-            $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $session->get("userId"));
+        if ($this->request->hasParams()) {
+            $articleId = \App\Models\Post::insertPost($this->request->getParam('content'), $this->request->getParam('title'), null, $this->session->get("userId"));
         }
-        //$articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $session->get("userId"));
+        //$articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $this->session->get("userId"));
     }
 
 }
