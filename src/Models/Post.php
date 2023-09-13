@@ -87,7 +87,7 @@ class Post extends Database {
 
     // Sélectionne et récupère tous les commentaires dans la page admin avec le status = 0
     public static function commentStatusDefault(){
-        $results = self::$db->query("SELECT content, id, status FROM posts WHERE status = '0' AND id_parent is not null ORDER BY id DESC");
+        $results = self::$db->query("SELECT content, id, status, created FROM posts WHERE status = '0' AND id_parent is not null ORDER BY id DESC");
         return $results->fetchAll();
     }
        
