@@ -2,17 +2,18 @@
 
  namespace App\Models;
 
- class Database {
+ class Database 
+ {
 
      protected static $db;
-
+     
      public static function initDatabase() {
          include_once "./.env.php";
          if (self::$db != null) {
             return;
          }
          try {
-             self::$db = new \PDO(
+             self::$db = new \PDO (
                 'mysql:host=' . $config['database']['hostname'] . ';dbname=' . $config['database']['dbname'] . ';charset=utf8',
                 $config['database']['username'], $config['database']['password']
             );

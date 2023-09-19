@@ -5,7 +5,7 @@ namespace App\Controllers;
 class PostsController extends Controller {
 
     // Méthode qui récupère la liste des articles et la session de l'utilisateur
-    public function index() {
+    public function index () {
         $posts = \App\Models\Post::getPosts();
         // La variable $params récupère les données dans un tableau associatif
         $params = [
@@ -17,7 +17,7 @@ class PostsController extends Controller {
     }
 
     // Méthode qui affiche les données
-    public function show($id) {
+    public function show ($id) {
         if (!$id) {
             throw new \Exception("Ce post n'existe pas", 404);
         }        
@@ -38,7 +38,7 @@ class PostsController extends Controller {
     }
 
     // Méthode qui insère les commentaires de l'article     
-    public function comment($id) {
+    public function comment ($id) {
         // Condition qui empêche ou autorise la publication du commentaire si l'on n'est ou pas en session
         if (!$this->session->has("userId")) {
             $this->render('post.html.twig');
@@ -50,11 +50,11 @@ class PostsController extends Controller {
     }
 
     // Méthode qui insère les articles
-    public function post($id){
+    public function post ($id){
         if ($this->request->hasParams()) {
             $articleId = \App\Models\Post::insertPost($this->request->getParam('content'), $this->request->getParam('title'), null, $this->session->get("userId"));
         }
-        //$articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $this->session->get("userId"));
+        // $articleId = \App\Models\Post::insertPost($_POST['content'], $_POST['title'], null, $this->session->get("userId"));
     }
 
 }

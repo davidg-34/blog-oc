@@ -21,25 +21,27 @@ class User extends Database {
         return null;
     }
 
+
     // Fonction pour l'inscription en BDD de l'utilisateur
     public static function create($username, $email, $password, $role) { 
         // Récupère dans la variable le mdp en mode hachage         
         $pwd = password_hash($password, PASSWORD_DEFAULT);   
         $statement = self::$db->prepare('INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)') ;
-        $statement->execute ([
-            $username, 
-            $email, 
-            $pwd,
-            $role
-        ]);
-        // Retourne la fonction avec le dernier enregistrement
+            $statement->execute ([
+                $username, 
+                $email, 
+                $pwd,
+                $role,
+            ]);
+            // Retourne la fonction avec le dernier enregistrement
         return self::$db->lastInsertId();         
-    }   
+    }
 
     public static function getAuthors() {
         $results = self::$db->query("SELECT * FROM users");
         return $results->fetchAll();
     }
+
 
     // Sélectionne le nom de l'utilisateur
     public static function getUser(){

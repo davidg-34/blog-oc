@@ -30,28 +30,28 @@ class AdminController extends Controller {
         $comments = \App\Models\Post::commentStatusDefault();
         $username = \App\Models\User::getUser();
         $params = [
-            'articles' => $posts,
-            'userId' => $session->get("userId"),
-            'comments' => $comments,
-            'username' => $username
+            'articles'  => $posts,
+            'userId'    => $session->get("userId"),
+            'comments'  => $comments,
+            'username'  => $username
         ];
-        // Appel de la vue avec les données en second paramètre
+        // Appel de la vue avec les données en second paramètre.
         $this->render('administration.html.twig', $params);
 
     }
 
     // Méthode pour modifier des données
     public function edit($id) {
-        // Variables pour récupérer les requêtes sur les articles
+        // Variables pour récupérer les requêtes sur les articles.
         $posts = \App\Models\Post::getPosts();
         $post = \App\Models\Post::getPost($id);
         $authors = \App\Models\User::getAuthors();
 
         // Stocke les variables dans un tableau associatif pour les envoyer à la vue
         $params = [
-            "articles" => $posts,
-            "article" => $post,
-            "authors" => $authors         
+            "articles"  => $posts,
+            "article"   => $post,
+            "authors"   => $authors         
         ];        
         $this->render('administration.html.twig', $params);
     } 
@@ -82,7 +82,7 @@ class AdminController extends Controller {
         }
     }
 
-    // Méthode qui supprime un article dans la session
+    // Méthode qui supprime un article dans la session.
     public function delete($id) {
         $session = new \App\Session();
 

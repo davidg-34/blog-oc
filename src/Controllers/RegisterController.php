@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class RegisterController extends Controller {
     
-    // Enregistrement d'un utilisateur
+    // Enregistrement d'un utilisateur.
     public function index() { 
         $request = new \App\Request();
         // Au moment de la validation du formulaire, enregistrement des données user dans la BDD            

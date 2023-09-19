@@ -3,7 +3,7 @@
 namespace App\Router;
 
 
-//Manage route
+// Manage route
 
 class Route {
 
@@ -19,7 +19,7 @@ class Route {
 
     }
 
-    //Regex method for manage param captur
+    // Regex method for manage param captur
 
     public function with(string $param, string $regex) {
         
@@ -28,15 +28,15 @@ class Route {
         
     }
     
-    //check if url = route and captur param
-    public function match(string $url): bool {        
+    // check if url = route and captur param
+    public function match(string $url): bool {
         // remove '/'
         $url = trim($url, '/');
         /* var_dump($url); */
         $path = preg_replace_callback('#:([\w]+)#', [$this, 'paramMatch'] , $this->path);
         /* var_dump($path); */
         $regex = "#^$path$#i";
-        //watch if url = path
+        // watch if url = path
         if (!preg_match($regex, $url, $matches)) {
             return false;
         }
@@ -48,7 +48,7 @@ class Route {
         
     }
     
-    //Captur all param 
+    // Captur all param 
     private function paramMatch($match): string {
         if(isset($this->params[$match[1]])) {
             return '(' . $this->params[$match[1]] . ')';
@@ -57,7 +57,7 @@ class Route {
         return '([^/]+)';
     }
     
-    //Call the callable route 
+    // Call the callable route 
     public function call() {
 
         if(is_string($this->callable))  {
@@ -72,10 +72,10 @@ class Route {
         }  
     }
     
-    //create url
+    // create url
     public function getUrl($params): string{
         $path = $this->path;
-        //je parcours tous les paramètres
+        // je parcours tous les paramètres
         foreach($params as $id => $value){
             $path = str_replace(':$id', $value, $path);
         }

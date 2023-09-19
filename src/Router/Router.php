@@ -49,7 +49,7 @@ class Router {
             throw new RouterException('REQUEST_METHOD does not exist');
         }
         foreach($this->routes[$request->getServerProp('REQUEST_METHOD')] as $route){
-            if($route->match($this->url)){
+            if ($route->match($this->url)){
                 return $route->call();
             }
         } 

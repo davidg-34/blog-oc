@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
+// Load Composer's autoloader
 require_once 'vendor/autoload.php';
 
 
@@ -20,7 +20,7 @@ class ContactController extends Controller{
             $email = $this->request->getParam("email");
             $message =  $this->request->getParam("message");
             // TO DO gestion d'erreur
-            if  (false) {
+            if (false) {
                 return "error";
             }
             $this->sendContactMail($email, $firstname, $lastname, $message);
@@ -29,12 +29,12 @@ class ContactController extends Controller{
     }
 
     private function sendContactMail($email, $firstname, $lastname, $message) {
-        //Create an instance; passing `true` enables exceptions
+        // Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
         try {
-            //Server settings
-            $mail->SMTPDebug = false;                      //Enable verbose debug output
+            // Server settings
+            $mail->SMTPDebug = false;                                   //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -43,15 +43,15 @@ class ContactController extends Controller{
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-            //Recipients
+            // Recipients
             $mail->setFrom('david.guion.web@gmail.com', 'Blog de David');
             $mail->addAddress('david.guion.web@gmail.com', $firstname. ' ' . $lastname);     //Add a recipient
 
-            //Content
+            // Content
             $mail->isHTML(true);                                        //Set email format to HTML
             $mail->Subject = 'Message de contact sur le blog';
             $mail->Body    = 'Message réçu de<br>Nom : ' . $firstname . ' ' . $lastname .'<br>Email : ' . $email . '<br>Message : ' . $message;
-            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
             // echo 'Message has been sent';

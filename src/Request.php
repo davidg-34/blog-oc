@@ -10,9 +10,9 @@ class Request {
     private $server;
     
     // Méthode qui récupère et filtre les valeurs des variables GET et POST en sortie de formulaire
-    public function __construct() {        
-        $this->server = (isset($_SERVER)) ? $_SERVER : null;        
-        $safeGet = filter_input_array(INPUT_GET);        
+    public function __construct() {
+        $this->server = (isset($_SERVER)) ? $_SERVER : null;
+        $safeGet = filter_input_array(INPUT_GET);
         if (!is_array($safeGet)) $safeGet = [];
         $safePost = filter_input_array(INPUT_POST);
         if (!is_array($safePost)) $safePost = [];
@@ -31,14 +31,16 @@ class Request {
         if (isset($this->params[$key])) {
             return $this->params[$key];
         }
+        
         return null;
     }
 
-    public function getParams() {        
-        return $this->params;        
+    public function getParams() {
+        return $this->params;
     }
 
     public function getServerProp($property) {
         return isset($this->server[$property]) ? $this->server[$property] : null;
     }
+    
 }

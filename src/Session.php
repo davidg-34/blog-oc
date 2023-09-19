@@ -17,7 +17,7 @@ class Session {
         $this->session = $_SESSION;
     }
     
-    public function get(string $key) {
+    public function get (string $key) {
         if ($this->has($key)) {
             return $this->session[$key];
         }
@@ -31,28 +31,30 @@ class Session {
      */
     
     // Méthode qui définit la clé et la valeur du tableau $_SESSION
-     public function set(string $key, $value) {
+     public function set (string $key, $value) {
         $this->session[$key] = $value;
         $_SESSION = $this->session;
         return $this;
     }
 
     // Méthode qui supprime les variables de la session courante
-    public function remove(string $key) {
+    public function remove (string $key) {
         if ($this->has($key)) {
             unset($this->session[$key]);
             $_SESSION = $this->session;
-            header("Location: /blogMvc/"); // !Retour vers l'accueil
+            
+            // !Retour vers l'accueil
+            header("Location: /blogMvc/"); 
         }
     }
 
     // Méthode qui déconnecte l'utilisateur
-    public function clear() {
+    public function clear () {
         session_unset();
     }
 
     // Méthode qui indique que si l'utilisateur est connecté, on retourne la variable de session avec sa clé
-    public function has(string $key) {
+    public function has (string $key) {
         return array_key_exists($key, $this->session); 
     }
 }
