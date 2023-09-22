@@ -20,7 +20,6 @@ class Request {
     }
     
     public function hasParams() {
-        print_r($this->params);
         return !empty($this->params);
        
     }
