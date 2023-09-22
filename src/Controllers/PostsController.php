@@ -28,7 +28,7 @@ class PostsController extends Controller {
         // Initialisation des variables
         $article = \App\Models\Post::getPostById($id);
         $comments = \App\Models\Post::getCommentByPost($id);        
-         // Tableau associatif qui permet l'envoie les données de l'article et des commentaires à la vue
+         // Tableau associatif qui stocke les données de l'article et des commentaires
         $params = [
             "article" => $article,
             "comments" => $comments            
