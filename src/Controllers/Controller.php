@@ -14,7 +14,7 @@ class Controller {
     {
         $this->request = new \App\Request();
         $this->session = new  \App\Session();
-        $this->twigLoader = new \Twig\Loader\FilesystemLoader('src/templates');
+        $this->twigLoader = new \Twig\Loader\FilesystemLoader('../src/templates');
         $this->twig = new \Twig\Environment($this->twigLoader);
         $this->twig->addExtension(new StringExtension());
     }

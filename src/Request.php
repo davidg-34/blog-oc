@@ -13,6 +13,8 @@ class Request {
     public function __construct() {
         $this->server = (isset($_SERVER)) ? $_SERVER : null;
         $safeGet = filter_input_array(INPUT_GET);
+        if (isset($safeGet['url'])) unset($safeGet['url']);
+        //print_r($safeGet);
         if (!is_array($safeGet)) $safeGet = [];
         $safePost = filter_input_array(INPUT_POST);
         if (!is_array($safePost)) $safePost = [];
@@ -20,7 +22,7 @@ class Request {
     }
     
     public function hasParams() {
-        print_r($this->params);
+        //print_r($this->params);
         return !empty($this->params);
        
     }

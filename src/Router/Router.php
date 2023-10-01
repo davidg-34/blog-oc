@@ -16,14 +16,12 @@ class Router {
         $route = new Route($path, $callable, $name);
         $this->routes['GET'][] = $route;
         return $route;
-        /* return $this->add($path, $callable, $name, 'GET'); */ 
     }
     
     public function post($path, $callable, $name = null){
         $route = new Route($path, $callable, $name);
         $this->routes['POST'][] = $route;
         return $route;
-        /* return $this->add($path, $callable, $name, 'POST'); */ 
     }
 
     private function add($path, $callable, $name, $method){

@@ -8,10 +8,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// Load Composer's autoloader
-require_once 'vendor/autoload.php';
-
-
 class ContactController extends Controller{
     public function index(){
         if ($this->request->hasParams()) {

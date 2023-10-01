@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 \App\Models\Database::initDatabase();
 
@@ -11,12 +11,10 @@ $router = new App\Router\Router($request->getServerProp('REQUEST_URI'));
 // Route accueil du site
 $router->get('/blogMvc/', 'Homepage#index');
 
-$router->get('/blogMvc/blog', 'Posts#index');
-// $router->post('/blogMvc/homepage', 'Homepage#index');
-
 // Routes des articles
+$router->get('/blogMvc/blog', 'Posts#index');
 $router->get('/blogMvc/posts/:id', 'Posts#show');
-$router->post('/blogMvc/posts', 'Posts#post');
+// $router->post('/blogMvc/posts', 'Posts#post');
 
 // Routes des commentaires
 $router->post('/blogMvc/posts/:id', 'Posts#comment');
