@@ -10,6 +10,7 @@ Dans le cadre du parcours "Développeur d'applications PHP/Symfony", ce projet e
 2 : Importer le fichier sql 'blog.sql' situé à la racine du prohet pour créer une base données dans le SGBD de MySQL.
 
 3 : Créer un fichier .env.php à la racine du projet avec un script sous cette forme en y intégrant vos propres identifiants de connexion.
+ 
  $config = [
     "database" => [
         "hostname" => "localhost",
