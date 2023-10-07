@@ -26,10 +26,17 @@ class AdminController extends Controller {
             } 
         }       
         // Affiche les données dans un tableau associatif [articles, session, utilisateur, commentaires]
-        $posts = \App\Models\Post::getPosts();
-        $comments = \App\Models\Post::commentStatusDefault();
+        $isAdmin = \App\Models\User::isAdmin($session->get("userId"));
+        $comments = [];                
+        if ($isAdmin) {
+            $posts = \App\Models\Post::getPosts();
+            $comments = \App\Models\Post::commentStatusDefault();
+        } else {
+            $posts = \App\Models\Post::getPosts($session->get("userId"));
+        }
         $username = \App\Models\User::getUser();
         $params = [
+            'isAdmin'   => $isAdmin,
             'articles'  => $posts,
             'userId'    => $session->get("userId"),
             'comments'  => $comments,
@@ -94,6 +101,5 @@ class AdminController extends Controller {
             throw new \Exception("Vous devez être connecté");
         }
     }
-
          
 }

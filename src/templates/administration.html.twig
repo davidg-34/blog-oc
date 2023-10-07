@@ -90,23 +90,24 @@
 
 
     {# Gestion des commentaires #}
-
-    <h3 class="mt-5 text-center">Gestion des Commentaires</h3>   
-    {# Affichage des commentaires #}
-    <div class="container mt-5 mb-5">
-      <h5 class = p-3>Commentaires : </h5>        
-        {% for comment in comments %}
-        <div class="container m-3 border border-primary">
-          <p> Commentaire N° :<b> {{ loop.revindex }} </b> </p>
-          <p class="card-text text-justify">Le : {{ comment.created|date("d m Y à H i s") }}</p>
-          <p class="card-text">Commentaire :             
-          <a class="btn btn-info operation" href = "/blogMvc/administration/posts/{{comment.id}}/validate"><i class="fa fa-check" aria-hidden="true"></i> valider</a>
-          <a class="btn btn-warning operation" href = "/blogMvc/administration/posts/{{comment.id}}/reject"><i class="fa-solid fa-ban"></i> rejeter</a>
-          </p>
-          <p class="bg-light border border-dark-subtle p-4 mt-2">{{comment['content']}}</p>
-        </div>
-        {% endfor %}
-    </div>
+    {% if isAdmin %}
+      <h3 class="mt-5 text-center">Gestion des Commentaires</h3>   
+      {# Affichage des commentaires #}
+      <div class="container mt-5 mb-5">
+        <h5 class = p-3>Commentaires : </h5>        
+          {% for comment in comments %}
+          <div class="container m-3 border border-primary">
+            <p> Commentaire N° :<b> {{ loop.revindex }} </b> </p>
+            <p class="card-text text-justify">Le : {{ comment.created|date("d m Y à H i s") }}</p>
+            <p class="card-text">Commentaire :             
+            <a class="btn btn-info operation" href = "/blogMvc/administration/posts/{{comment.id}}/validate"><i class="fa fa-check" aria-hidden="true"></i> valider</a>
+            <a class="btn btn-warning operation" href = "/blogMvc/administration/posts/{{comment.id}}/reject"><i class="fa-solid fa-ban"></i> rejeter</a>
+            </p>
+            <p class="bg-light border border-dark-subtle p-4 mt-2">{{comment['content']}}</p>
+          </div>
+          {% endfor %}
+      </div>
+    {% endif %}
 
 </div>
 

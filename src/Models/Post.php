@@ -20,8 +20,23 @@ class Post extends Database {
     }
 
     // Selectionne les articles sur la page 'liste article'
-    public static function getPosts() {
-        $results = self::$db->query("select posts.*, users.username, users.email FROM posts LEFT JOIN users ON posts.id_user = users.id WHERE posts.id_parent is null ORDER BY posts.created DESC LIMIT 10");
+    public static function getPosts($authorId = null) {
+        if ($authorId) {
+            $results = self::$db->query(
+                "SELECT posts.*, users.username, users.email " . 
+                "FROM posts " .
+                "LEFT JOIN users ON posts.id_user = users.id " . 
+                "WHERE posts.id_parent is null " . 
+                "AND id_user = " . $authorId . " " . 
+                "ORDER BY posts.created DESC LIMIT 10");
+        } else {
+            $results = self::$db->query(
+                "SELECT posts.*, users.username, users.email " . 
+                "FROM posts " .
+                "LEFT JOIN  users ON posts.id_user = users.id " . 
+                "WHERE posts.id_parent is null " . 
+                "ORDER BY posts.created DESC LIMIT 10");
+        }
         return $results->fetchAll();
     }
 
@@ -107,7 +122,6 @@ class Post extends Database {
 
     
 }
-
 
 
 

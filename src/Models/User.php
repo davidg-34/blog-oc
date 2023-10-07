@@ -49,6 +49,18 @@ class User extends Database {
         return $results->fetchAll();
     }
 
+    public static function getUserById($userId) {
+        $results = self::$db->query("SELECT * FROM users where id=" . $userId);
+        $users = $results->fetchAll();
+        if ($users && count($users)) return $users[0];
+        return null;
+    }
+
+    public static function isAdmin($userId) {        
+        $user = self::getUserById($userId);
+        return $user['role'] == "admin";
+    }
+
     
     // Méthode pour modifier un utilisateur
     public static function updateUser($id, $username = NULL){
@@ -61,4 +73,3 @@ class User extends Database {
     }
 
 }
-
